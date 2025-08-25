@@ -7,6 +7,11 @@ export const metadata: Metadata = {
   title: "Shemaiah's Digital Canvas",
   description: "The personal portfolio of Shemaiah, a passionate developer.",
   keywords: ['full-stack developer', 'creative technologist', 'portfolio', 'react', 'nextjs', 'typescript'],
+  icons: {
+    icon: '/Mspace.svg',
+    shortcut: '/Mspace.svg',
+    apple: '/Mspace.svg',
+  },
 };
 
 export default function RootLayout({

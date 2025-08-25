@@ -70,11 +70,20 @@
 
 @layer utilities {
   @keyframes scroll-x {
-    from { transform: translateX(0); }
-    to { transform: translateX(-100%); }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-x-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
   }
 
   .animate-scroll-x {
     animation: scroll-x 40s linear infinite;
+  }
+
+  .animate-scroll-x-reverse {
+    animation: scroll-x-reverse 35s linear infinite;
   }
 }

@@ -29,6 +29,7 @@ export default function Home() {
           id="skills"
           skills={portfolioData.skills}
           techStack={portfolioData.techStack}
+          buzzwords={portfolioData.buzzwords}
         />
         <WorkSection id="work" projects={portfolioData.workShowcase} />
         <ContactSection id="contact" />

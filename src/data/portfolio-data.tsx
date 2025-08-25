@@ -52,6 +52,7 @@ interface PortfolioData {
   education: Education;
   certifications: Certification[];
   skills: Skill[];
+  buzzwords: Skill[];
   techStack: Tech[];
   workShowcase: Project[];
   socialLinks: SocialLink[];
@@ -77,26 +78,30 @@ export const portfolioData: PortfolioData = {
     { name: "Advanced Node.js", issuer: "Coder Academy" },
   ],
   skills: [
-    { name: "JavaScript", proficiency: 95 },
-    { name: "TypeScript", proficiency: 90 },
-    { name: "React", proficiency: 90 },
-    { name: "Next.js", proficiency: 88 },
+    {name: "HTML", proficiency: 95},
+    { name: "CSS", proficiency: 95 },
+    { name: "JavaScript", proficiency: 85 },
+    { name: "TypeScript", proficiency: 80 },
+    { name: "React", proficiency: 80 },
+    { name: "Next.js", proficiency: 80 },
     { name: "Node.js", proficiency: 85 },
-    { name: "Python", proficiency: 80 },
-    { name: "Databases", proficiency: 88 },
-    { name: "DevOps", proficiency: 75 },
-    { name: "System Design", proficiency: 85 },
-    { name: "API Development", proficiency: 92 },
+    { name: "Python", proficiency: 60 },
+    { name: "Supabase", proficiency: 20 },
+    {name: "TailwindCSS", proficiency: 60},
+    { name: "Vercel", proficiency: 20 },
+  ],
+  buzzwords: [
+    { name: "System Design", proficiency: 65 },
+    { name: "API Development", proficiency: 50 },
+    { name: "DevOps", proficiency: 45 },
+    { name: "Microservices", proficiency: 40 },
+    { name: "Cloud Architecture", proficiency: 35 },
+    { name: "Scalability", proficiency: 50 },
   ],
   techStack: [
-    { name: "Node.js", icon: "nodejs" },
-    { name: "Python", icon: "python" },
-    { name: "PostgreSQL", icon: "postgresql" },
-    { name: "Docker", icon: "docker" },
-    { name: "React", icon: "react"},
-    { name: "Firebase", icon: "firebase"},
-    { name: "TensorFlow", icon: "tensorflow"},
-    { name: "D3.js", icon: "d3js" },
+    { name: "Next.js", icon: "nextjs" },
+    { name: "Supabase", icon: "supabase" },
+    { name: "Vercel", icon: "vercel" },
   ],
   workShowcase: [
     {
@@ -111,48 +116,10 @@ export const portfolioData: PortfolioData = {
       ],
       github: "https://github.com/ShemaiahYaba/result-flow/",
       url: "#",
-      tech: ["python", "flask", "postgresql"],
+      tech: ["react", "typescript", "supabase"],
       dataAiHint: "academic repository"
     },
-    {
-      title: "Clinic App",
-      description: "Volunteer project for student clinic appointments.",
-      private: true,
-      defaultImage: "https://placehold.co/600x400/eeeeee/31343C",
-       gallery: [
-        "https://placehold.co/1280x720/eeeeee/31343C",
-      ],
-      github: null,
-      url: null,
-      tech: ["react", "firebase"],
-      dataAiHint: "clinic app"
-    },
-    {
-      title: "Data Visualization Dashboard",
-      description: "A real-time analytics dashboard using D3.js and WebSockets.",
-      private: false,
-      defaultImage: "https://placehold.co/600x400/31343C/eeeeee",
-      gallery: [
-        "https://placehold.co/1280x720/31343C/eeeeee",
-      ],
-      github: "https://github.com/ShemaiahYaba",
-      url: "#",
-      tech: ["react", "d3js", "nodejs"],
-      dataAiHint: "analytics dashboard"
-    },
-    {
-      title: "AI-Powered Chatbot",
-      description: "A customer service chatbot using NLP and machine learning.",
-      private: false,
-      defaultImage: "https://placehold.co/600x400/ffffff/000000",
-      gallery: [
-        "https://placehold.co/1280x720/ffffff/000000",
-      ],
-      github: "https://github.com/ShemaiahYaba",
-      url: "#",
-      tech: ["python", "tensorflow", "flask"],
-      dataAiHint: "robot chatbot"
-    },
+   
   ],
   socialLinks: [
     { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github" },
