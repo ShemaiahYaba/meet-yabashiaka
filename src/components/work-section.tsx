@@ -14,6 +14,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { IconRenderer } from '@/components/icon-renderer';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 interface WorkSectionProps {
   id: string;
@@ -45,15 +51,36 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                 <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
                 <div className="flex flex-wrap gap-4 mb-4">
-                  {project.tech.map((techName) => (
-                    <IconRenderer key={techName} name={techName} className="h-6 w-6"/>
-                  ))}
+                  <TooltipProvider>
+                    {project.tech.map((techName) => (
+                      <Tooltip key={techName}>
+                        <TooltipTrigger asChild>
+                          <div>
+                            <IconRenderer name={techName} className="h-6 w-6"/>
+                          </div>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p className="capitalize">{techName.replace(/js/g, '.js')}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+                  </TooltipProvider>
                 </div>
                 <div className="mt-auto flex items-center gap-4 pt-4 border-t border-border">
                   {project.private ? (
-                    <Lock className="h-5 w-5 text-muted-foreground" title="Private Project" />
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger><Lock className="h-5 w-5 text-muted-foreground" /></TooltipTrigger>
+                        <TooltipContent><p>Private Project</p></TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   ) : (
-                    <Unlock className="h-5 w-5 text-muted-foreground" title="Public Project" />
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger><Unlock className="h-5 w-5 text-muted-foreground" /></TooltipTrigger>
+                        <TooltipContent><p>Public Project</p></TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
                   <Dialog>
                     <DialogTrigger asChild>
@@ -79,28 +106,40 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
                     </DialogContent>
                   </Dialog>
                   {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary"
-                      title="GitHub Repository"
-                    >
-                      <Github className="h-5 w-5" />
-                      <span className="sr-only">GitHub</span>
-                    </a>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                           <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary"
+                            >
+                              <Github className="h-5 w-5" />
+                              <span className="sr-only">GitHub</span>
+                            </a>
+                        </TooltipTrigger>
+                        <TooltipContent><p>GitHub Repository</p></TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
                   {project.url && (
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary"
-                      title="Live Demo"
-                    >
-                      <ExternalLink className="h-5 w-5" />
-                      <span className="sr-only">External Link</span>
-                    </a>
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                           <a
+                              href={project.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary"
+                            >
+                              <ExternalLink className="h-5 w-5" />
+                              <span className="sr-only">External Link</span>
+                            </a>
+                        </TooltipTrigger>
+                        <TooltipContent><p>Live Demo</p></TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   )}
                 </div>
               </CardContent>
