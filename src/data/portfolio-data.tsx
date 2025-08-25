@@ -90,9 +90,9 @@ export const portfolioData: PortfolioData = {
     { name: "Docker", color: "#2496ED" },
   ],
   workShowcase: [
-    { 
-      title: "Academic Repository", 
-      description: "Repository for academic materials built with Flask and PostgreSQL.", 
+    {
+      title: "Academic Repository",
+      description: "Repository for academic materials built with Flask and PostgreSQL.",
       private: false,
       image: "https://placehold.co/600x400/000000/ffffff",
       github: "https://github.com/ShemaiahYaba",
@@ -100,9 +100,9 @@ export const portfolioData: PortfolioData = {
       tech: ["Flask", "PostgreSQL", "Next.js"],
       dataAiHint: "academic repository"
     },
-    { 
-      title: "Clinic App", 
-      description: "Volunteer project for student clinic appointments.", 
+    {
+      title: "Clinic App",
+      description: "Volunteer project for student clinic appointments.",
       private: true,
       image: "https://placehold.co/600x400/eeeeee/31343C",
       github: null,
@@ -110,9 +110,9 @@ export const portfolioData: PortfolioData = {
       tech: ["React Native", "Firebase"],
       dataAiHint: "clinic app"
     },
-    { 
-      title: "Data Visualization Dashboard", 
-      description: "A real-time analytics dashboard using D3.js and WebSockets.", 
+    {
+      title: "Data Visualization Dashboard",
+      description: "A real-time analytics dashboard using D3.js and WebSockets.",
       private: false,
       image: "https://placehold.co/600x400/31343C/eeeeee",
       github: "https://github.com/ShemaiahYaba",
@@ -120,9 +120,9 @@ export const portfolioData: PortfolioData = {
       tech: ["React", "D3.js", "Node.js"],
       dataAiHint: "analytics dashboard"
     },
-    { 
-      title: "AI-Powered Chatbot", 
-      description: "A customer service chatbot using NLP and machine learning.", 
+    {
+      title: "AI-Powered Chatbot",
+      description: "A customer service chatbot using NLP and machine learning.",
       private: false,
       image: "https://placehold.co/600x400/ffffff/000000",
       github: "https://github.com/ShemaiahYaba",
