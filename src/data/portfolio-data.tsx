@@ -16,7 +16,7 @@ export interface Certification {
 
 export interface Skill {
   name: string;
-  proficiency: number;
+  proficiency: number; // This is a percentage value from 0-100
 }
 
 export interface Tech {
@@ -77,12 +77,14 @@ export const portfolioData: PortfolioData = {
     { name: "Advanced Node.js", issuer: "Coder Academy" },
   ],
   skills: [
-    { name: "JavaScript / TypeScript", proficiency: 95 },
-    { name: "React / Next.js", proficiency: 90 },
-    { name: "Node.js / Express", proficiency: 85 },
-    { name: "Python / Django", proficiency: 80 },
-    { name: "Databases (SQL/NoSQL)", proficiency: 88 },
-    { name: "Cloud & DevOps", proficiency: 75 },
+    { name: "JavaScript", proficiency: 95 },
+    { name: "TypeScript", proficiency: 90 },
+    { name: "React", proficiency: 90 },
+    { name: "Next.js", proficiency: 88 },
+    { name: "Node.js", proficiency: 85 },
+    { name: "Python", proficiency: 80 },
+    { name: "Databases", proficiency: 88 },
+    { name: "DevOps", proficiency: 75 },
     { name: "System Design", proficiency: 85 },
     { name: "API Development", proficiency: 92 },
   ],
@@ -94,6 +96,7 @@ export const portfolioData: PortfolioData = {
     { name: "React", icon: "react"},
     { name: "Firebase", icon: "firebase"},
     { name: "TensorFlow", icon: "tensorflow"},
+    { name: "D3.js", icon: "d3js" },
   ],
   workShowcase: [
     {

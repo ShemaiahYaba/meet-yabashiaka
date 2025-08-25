@@ -3,6 +3,8 @@
 
 import type { Skill, Tech } from '@/data/portfolio-data';
 import { IconRenderer } from '@/components/icon-renderer';
+import { icons } from '@/config/icons';
+
 
 interface SkillsSectionProps {
   id: string;
@@ -11,21 +13,33 @@ interface SkillsSectionProps {
 }
 
 const ScrollingSkillsMarquee = ({ skills }: { skills: Skill[] }) => {
-  // Duplicate skills for a seamless loop
-  const extendedSkills = [...skills, ...skills, ...skills, ...skills]; 
+  const extendedSkills = [...skills, ...skills, ...skills, ...skills];
 
   return (
     <div className="relative w-full overflow-hidden py-12 group">
       <div className="flex animate-scroll-x group-hover:[animation-play-state:paused]">
-        {extendedSkills.map((skill, index) => (
-          <div key={`${skill.name}-${index}`} className="relative flex-shrink-0 w-48 h-24 flex flex-col items-center justify-center p-4 mx-4 bg-card rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+        {extendedSkills.map((skill, index) => {
+           const iconKey = skill.name.toLowerCase().replace(/ \/ /g, '').replace(/\./g, '').replace(/ /g, '');
+           const hasIcon = Object.keys(icons).includes(iconKey);
+
+           return (
             <div
-              className="absolute bottom-0 left-0 w-full h-full rounded-lg bg-primary/5 -z-10 transition-all duration-300 "
-              style={{ height: `${skill.proficiency}%` }}
-            />
-            <p className="text-lg font-semibold text-center z-10">{skill.name}</p>
-          </div>
-        ))}
+              key={`${skill.name}-${index}`}
+              className="group/item relative flex-shrink-0 w-48 h-24 flex flex-col items-center justify-center p-4 mx-4 bg-card rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            >
+              <div
+                className="absolute bottom-0 left-0 w-full rounded-lg bg-primary/5 -z-10 transition-all duration-300 group-hover/item:bg-primary/10"
+                style={{ height: `${skill.proficiency}%` }}
+              />
+              <div className="z-10 flex flex-col items-center justify-center gap-2">
+                {hasIcon && (
+                    <IconRenderer name={iconKey} className="h-8 w-8" />
+                )}
+                <p className="text-sm font-semibold text-center">{skill.name}</p>
+              </div>
+            </div>
+           )
+        })}
       </div>
     </div>
   );
