@@ -5,28 +5,27 @@ import LinkedinIcon from "@/components/icons/linkedin";
 import TelegramIcon from "@/components/icons/telegram";
 import WhatsappIcon from "@/components/icons/whatsapp";
 import { 
-
   SiD3Dotjs,
-  
+  SiExpo,
 } from 'react-icons/si';
+import { TbBrandReactNative } from "react-icons/tb";
 import { 
   JavaScript, 
   TypeScript, 
   NodeJs, 
   Python, 
-  Tensorflow,
   Supabase,
   TailwindCSS,
   HTML5,
   CSS3,
   VercelDark,
-  Docker,
-  PostgreSQL,
   React,
   NextJs,
   Firebase,
+  Render,
+  ThreeJsDark,
+  FlaskDark,
 } from 'developer-icons';
-import MspaceIcon from '@/components/icons/mspace';
 import InstagramIcon from '@/components/icons/instagram';
 import type { IconProps } from '@/components/icons/icon-props';
 
@@ -63,33 +62,31 @@ export const icons: Record<string, IconConfig> = {
   whatsapp: { component: WhatsappIcon, color: "#25D366" },
   
   // Programming Languages & Frameworks (Developer Icons - High Quality)
-  html: { component: HTML5, color: "#3776AB" }, // Python blue
-  css: { component: CSS3, color: "#3776AB" }, // Python blue
+  html: { component: HTML5, color: "#DAA520" }, // Python orange
+  css: { component: CSS3, color: "#1E90FF" }, // Python blue
   python: { component: Python, color: "#3776AB" }, // Python blue
-  javascript: { component: JavaScript, color: "#F7DF1E" }, // JavaScript yellow
-  typescript: { component: TypeScript, color: "#3178C6" }, // TypeScript blue
-  nodejs: { component: NodeJs, color: "#68A063" }, // Node.js green
+  javascript: { component: JavaScript, color: "#F0DB4F" }, // JavaScript yellow
+  typescript: { component: TypeScript, color: "#257acc" }, // TypeScript blue
+  nodejs: { component: NodeJs, color: "#2EA255" }, // Node.js green
   
   // React Ecosystem (React Icons for consistency)
-  react: { component: React, color: "#61DAFB" }, // React cyan
+  react: { component: React, color: "#00B0FF" }, // React cyan
   nextjs: { component: NextJs, color: "#000000" }, // Next.js black
-  
-  // Backend & Databases
-  postgresql: { component: PostgreSQL, color: "#4169E1" }, // PostgreSQL blue
-  
-  // DevOps & Tools
-  docker: { component: Docker, color: "#2496ED" }, // Docker blue
   
   // Cloud & Services
   firebase: { component: Firebase, color: "#FFCA28" }, // Firebase yellow
   
   // Data & Analytics
-  d3js: { component: SiD3Dotjs, color: "#F9A03C" }, // D3.js orange
-  tensorflow: { component: Tensorflow, color: "#FF6F00" }, // TensorFlow orange
+  d3js: { component: SiD3Dotjs, color: "#1E90FF" }, // D3.js blue
 
   supabase: { component: Supabase, color: "#10B981" }, // Supabase green
 
-  tailwindcss: { component: TailwindCSS, color: "#10B981" }, // Tailwind CSS green
+  tailwindcss: { component: TailwindCSS, color: "#06B6D4" }, // Tailwind CSS blue
 
-  vercel: { component: VercelDark, color: "#10B981" }, // Vercel green
+  vercel: { component: VercelDark, color: "#000000" }, // Vercel black
+  render: { component: Render, color: "#000000" }, // Render black
+  threejs: { component: ThreeJsDark, color: "#E67E22" }, // Three.js orange
+  flask: { component: FlaskDark, color: "#000000" }, // Flask black
+  reactnative: { component: TbBrandReactNative, color: "#62D4E3" }, // React Native blue
+  expo: { component: SiExpo, color: "#00000" }, // Expo BLACK
 };

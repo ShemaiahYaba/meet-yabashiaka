@@ -74,29 +74,25 @@ export const portfolioData: PortfolioData = {
     university: "Mountain Top University",
   },
   certifications: [
-    { name: "Certified JavaScript Developer", issuer: "Tech Institute" },
-    { name: "Advanced Node.js", issuer: "Coder Academy" },
+    { name: "Ai Career Essentials", issuer: "ALX Africa" },
   ],
   skills: [
-    {name: "HTML", proficiency: 95},
-    { name: "CSS", proficiency: 95 },
-    { name: "JavaScript", proficiency: 85 },
-    { name: "TypeScript", proficiency: 80 },
+    {name: "HTML", proficiency: 90 },
+    { name: "CSS", proficiency: 90 },
+    {name: "TailwindCSS", proficiency: 80 },
+    { name: "JavaScript", proficiency: 80 },
+    { name: "TypeScript", proficiency: 65 },
     { name: "React", proficiency: 80 },
     { name: "Next.js", proficiency: 80 },
-    { name: "Node.js", proficiency: 85 },
+    { name: "Node.js", proficiency: 55 },
     { name: "Python", proficiency: 60 },
-    { name: "Supabase", proficiency: 20 },
-    {name: "TailwindCSS", proficiency: 60},
-    { name: "Vercel", proficiency: 20 },
+    { name: "Supabase", proficiency: 60 },
+    { name: "Vercel", proficiency: 70 },
   ],
   buzzwords: [
-    { name: "System Design", proficiency: 65 },
+    { name: "System Design", proficiency: 75 },
     { name: "API Development", proficiency: 50 },
     { name: "DevOps", proficiency: 45 },
-    { name: "Microservices", proficiency: 40 },
-    { name: "Cloud Architecture", proficiency: 35 },
-    { name: "Scalability", proficiency: 50 },
   ],
   techStack: [
     { name: "Next.js", icon: "nextjs" },
@@ -105,20 +101,87 @@ export const portfolioData: PortfolioData = {
   ],
   workShowcase: [
     {
+      title: "Shemaiah.",
+      description: "Shemaiah is a modern portfolio website that showcases my skills, projects, and contact information.",
+      private: true,
+      defaultImage: "/images/shemaiah/landing.png",
+      gallery: [
+        "/images/shemaiah/landing.png",
+        "/images/shemaiah/1.png",
+        "/images/shemaiah/2.png",
+      ],
+      github: "https://github.com/ShemaiahYaba/meet-yabashiaka/",
+      url: "https://meet-yabashiaka.vercel.app/",
+      tech: ["nextjs","typescript","tailwindcss", "vercel"],
+      dataAiHint: "portfolio-website"
+    },
+    {
+      title: "LAMP",
+      description: "The Official Website of LAMP - Level up and maximize your potential.",
+      private: true,
+      defaultImage: "/images/lamp/landing.png",
+      gallery: [
+        "/images/lamp/landing.png",
+        "/images/lamp/1.png",
+        "/images/lamp/2.png",
+        "/images/lamp/3.png"
+      ],
+      github: "https://github.com/ShemaiahYaba/lamp-initiative/",
+      url: "https://lamp-initiative.vercel.app/",
+      tech: ["nextjs","typescript","tailwindcss", "vercel"],
+      dataAiHint: "company-website"
+    },
+    {
       title: "ResultFlow",
       description: "ResultFlow is a smart result management system that helps universities automate marksheet formatting, grading, and result generation.",
       private: true,
-      defaultImage: "https://placehold.co/600x400/000000/ffffff",
+      defaultImage: "/images/result-flow/landing.png",
       gallery: [
-        "https://placehold.co/1280x720/000000/ffffff",
-        "https://placehold.co/1280x720/111111/eeeeee",
-        "https://placehold.co/1280x720/222222/dddddd"
+        "/images/result-flow/landing.png",
+        "/images/result-flow/1.png",
+        "/images/result-flow/2.png",
+        "/images/result-flow/3.png",
+        "/images/result-flow/4.png",
+        "/images/result-flow/5.png",
       ],
       github: "https://github.com/ShemaiahYaba/result-flow/",
-      url: "#",
-      tech: ["react", "typescript", "supabase"],
-      dataAiHint: "academic repository"
+      url: "https://result-flow.vercel.app/",
+      tech: ["nextjs","typescript", "supabase", "vercel"],
+      dataAiHint: "smart-result-management-system"
     },
+    {
+      title: "MatrixLAB",
+      description: "MatrixLAB is a modern educational web app that helps users intuitively explore the behavior of eigenvalues, eigenvectors, and principal components through interactive visualizations in 2D and 3D. Designed for students and educators in linear algebra, data science, and machine learning.",
+      private: false,
+      defaultImage: "/images/matrixlab/landing.png",
+      gallery: [
+        "/images/matrixlab/landing.png",
+        "/images/matrixlab/1.png",
+        "/images/matrixlab/2.png",
+        "/images/matrixlab/3.png",
+      ],
+      github: "https://github.com/ShemaiahYaba/EigenValue_Visualization/",
+      url: "https://mlab-inky.vercel.app/",
+      tech: ["react","typescript", "tailwindcss","threejs", "flask", "vercel", "render"],
+      dataAiHint: "eigen-value-visualization-platform"
+    },
+    // {
+    //   title: "MTU-RapidCare",
+    //   description: "MTU-RapidCare is a modern emergency alert and rapid response system for clinics and healthcare environments. Built with Expo, React Native, and Supabase, it enables real-time emergency reporting, device alerts, and seamless communication between staff and responders.",
+    //   private: false,
+    //   defaultImage: "/images/mtu-rapidcare/landing.png",
+    //   gallery: [
+    //     "/images/mtu-rapidcare/landing.png",
+    //     "/images/mtu-rapidcare/1.png",
+    //     "/images/mtu-rapidcare/2.png",
+    //     "/images/mtu-rapidcare/3.png",
+    //   ],
+    //   github: "https://github.com/ShemaiahYaba/clinic-app/",
+    //   url: "https://mlab-inky.vercel.app/",
+    //   tech: ["reactnative", "expo","supabase", "typescript"],
+    //   dataAiHint: "eigen-value-visualization-platform"
+    // },
+    
    
   ],
   socialLinks: [
