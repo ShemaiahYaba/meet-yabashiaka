@@ -25,7 +25,7 @@ const ScrollingSkillsMarquee = ({ skills }: { skills: Skill[] }) => {
            return (
             <div
               key={`${skill.name}-${index}`}
-              className="group/item relative flex-shrink-0 w-48 h-64 flex flex-col items-center justify-center p-4 mx-4 bg-card rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="group/item relative flex-shrink-0 w-48 h-48 flex flex-col items-center justify-center p-4 mx-4 bg-card rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               <div
                 className="absolute bottom-0 left-0 w-full rounded-lg bg-primary/5 -z-10 transition-all duration-300 group-hover/item:bg-primary/10"
