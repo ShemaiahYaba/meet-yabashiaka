@@ -1,22 +1,20 @@
-import type { ReactNode } from 'react';
-import { Github, Linkedin, Instagram } from 'lucide-react';
 
-interface Stat {
+export interface Stat {
   value: number;
   label: string;
 }
 
-interface Education {
+export interface Education {
   degree: string;
   university: string;
 }
 
-interface Certification {
+export interface Certification {
   name: string;
   issuer: string;
 }
 
-interface Skill {
+export interface Skill {
   name: string;
   proficiency: number;
 }
@@ -26,13 +24,15 @@ export interface Tech {
   color: string;
 }
 
-interface Project {
+export interface Project {
   title: string;
   description: string;
-  link: string;
-  imageUrl: string;
-  dataAiHint: string;
+  private: boolean;
+  image: string;
+  github: string | null;
+  url: string | null;
   tech: string[];
+  dataAiHint: string;
 }
 
 export interface SocialLink {
@@ -62,11 +62,11 @@ export const portfolioData: PortfolioData = {
   tagline: "Full-Stack Developer & Creative Technologist.",
   resumeUrl: "/Shemaiah-Resume.pdf",
   stats: [
-    { value: 15, label: "Projects Completed" },
-    { value: 5, label: "Years of Coding" },
-    { value: 1200, label: "GitHub Commits" },
+    { value: 7, label: "Projects Completed" },
+    { value: 1, label: "Years of Coding" },
+    { value: 533, label: "GitHub Commits" },
   ],
-  bio: "A passionate and detail-oriented Full-Stack Developer with a knack for building elegant and efficient solutions. I thrive on turning complex problems into simple, beautiful, and intuitive designs. When I'm not coding, you can find me exploring new technologies or contributing to open-source projects.",
+  bio: "I’m a backend developer who thrives on solving complex problems and building systems that scale. With a strong foundation in mathematics and self-directed engineering, I design robust APIs and backend architectures that power smooth user experiences. I help startups and teams turn ideas into products — one idea at a time. There’s value even in hidden places ✨",
   education: {
     degree: "B.Sc. Mathematics",
     university: "Mountain Top University",
@@ -90,16 +90,52 @@ export const portfolioData: PortfolioData = {
     { name: "Docker", color: "#2496ED" },
   ],
   workShowcase: [
-    { title: "E-commerce Platform", description: "A full-featured e-commerce site with Next.js and Stripe.", link: "#", imageUrl: "https://placehold.co/600x400/000000/ffffff", dataAiHint: "ecommerce website", tech: ["Next.js", "Stripe", "PostgreSQL"], },
-    { title: "Data Visualization Dashboard", description: "A real-time analytics dashboard using D3.js and WebSockets.", link: "#", imageUrl: "https://placehold.co/600x400/eeeeee/31343C", dataAiHint: "analytics chart", tech: ["React", "D3.js", "Node.js"], },
-    { title: "Mobile Task Manager", description: "A cross-platform productivity app built with React Native.", link: "#", imageUrl: "https://placehold.co/600x400/31343C/eeeeee", dataAiHint: "mobile app", tech: ["React Native", "Firebase"], },
-    { title: "AI-Powered Chatbot", description: "A customer service chatbot using NLP and machine learning.", link: "#", imageUrl: "https://placehold.co/600x400/ffffff/000000", dataAiHint: "robot chat", tech: ["Python", "TensorFlow", "Flask"], },
+    { 
+      title: "Academic Repository", 
+      description: "Repository for academic materials built with Flask and PostgreSQL.", 
+      private: false,
+      image: "https://placehold.co/600x400/000000/ffffff",
+      github: "https://github.com/ShemaiahYaba",
+      url: "#",
+      tech: ["Flask", "PostgreSQL", "Next.js"],
+      dataAiHint: "academic repository"
+    },
+    { 
+      title: "Clinic App", 
+      description: "Volunteer project for student clinic appointments.", 
+      private: true,
+      image: "https://placehold.co/600x400/eeeeee/31343C",
+      github: null,
+      url: null,
+      tech: ["React Native", "Firebase"],
+      dataAiHint: "clinic app"
+    },
+    { 
+      title: "Data Visualization Dashboard", 
+      description: "A real-time analytics dashboard using D3.js and WebSockets.", 
+      private: false,
+      image: "https://placehold.co/600x400/31343C/eeeeee",
+      github: "https://github.com/ShemaiahYaba",
+      url: "#",
+      tech: ["React", "D3.js", "Node.js"],
+      dataAiHint: "analytics dashboard"
+    },
+    { 
+      title: "AI-Powered Chatbot", 
+      description: "A customer service chatbot using NLP and machine learning.", 
+      private: false,
+      image: "https://placehold.co/600x400/ffffff/000000",
+      github: "https://github.com/ShemaiahYaba",
+      url: "#",
+      tech: ["Python", "TensorFlow", "Flask"],
+      dataAiHint: "robot chatbot"
+    },
   ],
   socialLinks: [
-    { name: "GitHub", url: "https://github.com", color: "#181717" },
-    { name: "LinkedIn", url: "https://linkedin.com", color: "#0A66C2" },
-    { name: "Instagram", url: "https://instagram.com", color: "#E4405F" },
-    { name: "Telegram", url: "https://telegram.org", color: "#24A1DE" },
-    { name: "WhatsApp", url: "https://whatsapp.com", color: "#25D366" },
+    { name: "GitHub", url: "https://github.com/ShemaiahYaba", color: "#181717" },
+    { name: "LinkedIn", url: "www.linkedin.com/in/shemaiah-yaba-shiaka", color: "#0A66C2" },
+    { name: "Instagram", url: "https://instagram.com/yabashiaka", color: "#E4405F" },
+    { name: "Telegram", url: "https://t.me/yabashiaka", color: "#24A1DE" },
+    { name: "WhatsApp", url: "https://wa.me/9039988198", color: "#25D366" },
   ],
 };
