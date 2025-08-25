@@ -3,10 +3,17 @@
 
 import Image from 'next/image';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Project } from '@/data/portfolio-data';
+import type { Project } from '@/data/portfolio-data';
 import { Github, ExternalLink, Eye, Lock, Unlock } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { IconRenderer } from '@/components/icon-renderer';
 
 interface WorkSectionProps {
   id: string;
@@ -26,7 +33,7 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
             <Card key={project.title} className="group overflow-hidden h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col">
               <div className="relative h-60 w-full">
                 <Image
-                  src={project.image}
+                  src={project.defaultImage}
                   alt={project.title}
                   fill
                   className="object-cover"
@@ -37,9 +44,9 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
               <CardContent className="p-6 flex flex-col flex-grow">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
                 <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech) => (
-                    <Badge key={tech} variant="secondary">{tech}</Badge>
+                <div className="flex flex-wrap gap-4 mb-4">
+                  {project.tech.map((techName) => (
+                    <IconRenderer key={techName} name={techName} className="h-6 w-6"/>
                   ))}
                 </div>
                 <div className="mt-auto flex items-center gap-4 pt-4 border-t border-border">
@@ -52,13 +59,23 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
                     <DialogTrigger asChild>
                       <button className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary">
                         <Eye className="h-5 w-5" />
-                        <span className="sr-only">Preview Image</span>
+                        <span className="sr-only">Preview Images</span>
                       </button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-3xl p-0">
-                      <div className="relative aspect-video">
-                        <Image src={project.image} alt={project.title} fill className="object-contain" />
-                      </div>
+                    <DialogContent className="max-w-4xl p-0">
+                       <Carousel className="w-full">
+                        <CarouselContent>
+                          {project.gallery.map((imgSrc, index) => (
+                            <CarouselItem key={index}>
+                              <div className="relative aspect-video">
+                                <Image src={imgSrc} alt={`${project.title} - Image ${index + 1}`} fill className="object-contain" />
+                              </div>
+                            </CarouselItem>
+                          ))}
+                        </CarouselContent>
+                        <CarouselPrevious className="left-2" />
+                        <CarouselNext className="right-2"/>
+                      </Carousel>
                     </DialogContent>
                   </Dialog>
                   {project.github && (
@@ -78,7 +95,7 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-blue-500"
+                      className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary"
                       title="Live Demo"
                     >
                       <ExternalLink className="h-5 w-5" />

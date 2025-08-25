@@ -21,14 +21,15 @@ export interface Skill {
 
 export interface Tech {
   name: string;
-  color: string;
+  icon: string;
 }
 
 export interface Project {
   title: string;
   description: string;
   private: boolean;
-  image: string;
+  defaultImage: string;
+  gallery: string[];
   github: string | null;
   url: string | null;
   tech: string[];
@@ -38,7 +39,7 @@ export interface Project {
 export interface SocialLink {
   name: string;
   url: string;
-  color: string;
+  icon: string;
 }
 
 interface PortfolioData {
@@ -62,7 +63,7 @@ export const portfolioData: PortfolioData = {
   tagline: "Full-Stack Developer & Creative Technologist.",
   resumeUrl: "/Shemaiah-Resume.pdf",
   stats: [
-    { value: 7, label: "Projects Completed" },
+    { value: 8, label: "Projects Completed" },
     { value: 1, label: "Years of Coding" },
     { value: 533, label: "GitHub Commits" },
   ],
@@ -76,66 +77,82 @@ export const portfolioData: PortfolioData = {
     { name: "Advanced Node.js", issuer: "Coder Academy" },
   ],
   skills: [
-    { name: "JavaScript / TypeScript", proficiency: 5 },
-    { name: "React / Next.js", proficiency: 5 },
-    { name: "Node.js / Express", proficiency: 4 },
-    { name: "Python / Django", proficiency: 4 },
-    { name: "Databases (SQL/NoSQL)", proficiency: 4 },
-    { name: "Cloud & DevOps", proficiency: 3 },
+    { name: "JavaScript / TypeScript", proficiency: 95 },
+    { name: "React / Next.js", proficiency: 90 },
+    { name: "Node.js / Express", proficiency: 85 },
+    { name: "Python / Django", proficiency: 80 },
+    { name: "Databases (SQL/NoSQL)", proficiency: 88 },
+    { name: "Cloud & DevOps", proficiency: 75 },
+    { name: "System Design", proficiency: 85 },
+    { name: "API Development", proficiency: 92 },
   ],
   techStack: [
-    { name: "Node.js", color: "#68A063" },
-    { name: "Python", color: "#3776AB" },
-    { name: "PostgreSQL", color: "#4169E1" },
-    { name: "Docker", color: "#2496ED" },
+    { name: "Node.js", icon: "nodejs" },
+    { name: "Python", icon: "python" },
+    { name: "PostgreSQL", icon: "postgresql" },
+    { name: "Docker", icon: "docker" },
   ],
   workShowcase: [
     {
-      title: "Academic Repository",
-      description: "Repository for academic materials built with Flask and PostgreSQL.",
-      private: false,
-      image: "https://placehold.co/600x400/000000/ffffff",
-      github: "https://github.com/ShemaiahYaba",
+      title: "ResultFlow",
+      description: "ResultFlow is a smart result management system that helps universities automate marksheet formatting, grading, and result generation.",
+      private: true,
+      defaultImage: "https://placehold.co/600x400/000000/ffffff",
+      gallery: [
+        "https://placehold.co/1280x720/000000/ffffff",
+        "https://placehold.co/1280x720/111111/eeeeee",
+        "https://placehold.co/1280x720/222222/dddddd"
+      ],
+      github: "https://github.com/ShemaiahYaba/result-flow/",
       url: "#",
-      tech: ["Flask", "PostgreSQL", "Next.js"],
+      tech: ["python", "flask", "postgresql"],
       dataAiHint: "academic repository"
     },
     {
       title: "Clinic App",
       description: "Volunteer project for student clinic appointments.",
       private: true,
-      image: "https://placehold.co/600x400/eeeeee/31343C",
+      defaultImage: "https://placehold.co/600x400/eeeeee/31343C",
+       gallery: [
+        "https://placehold.co/1280x720/eeeeee/31343C",
+      ],
       github: null,
       url: null,
-      tech: ["React Native", "Firebase"],
+      tech: ["react", "firebase"],
       dataAiHint: "clinic app"
     },
     {
       title: "Data Visualization Dashboard",
       description: "A real-time analytics dashboard using D3.js and WebSockets.",
       private: false,
-      image: "https://placehold.co/600x400/31343C/eeeeee",
+      defaultImage: "https://placehold.co/600x400/31343C/eeeeee",
+      gallery: [
+        "https://placehold.co/1280x720/31343C/eeeeee",
+      ],
       github: "https://github.com/ShemaiahYaba",
       url: "#",
-      tech: ["React", "D3.js", "Node.js"],
+      tech: ["react", "d3js", "nodejs"],
       dataAiHint: "analytics dashboard"
     },
     {
       title: "AI-Powered Chatbot",
       description: "A customer service chatbot using NLP and machine learning.",
       private: false,
-      image: "https://placehold.co/600x400/ffffff/000000",
+      defaultImage: "https://placehold.co/600x400/ffffff/000000",
+      gallery: [
+        "https://placehold.co/1280x720/ffffff/000000",
+      ],
       github: "https://github.com/ShemaiahYaba",
       url: "#",
-      tech: ["Python", "TensorFlow", "Flask"],
+      tech: ["python", "tensorflow", "flask"],
       dataAiHint: "robot chatbot"
     },
   ],
   socialLinks: [
-    { name: "GitHub", url: "https://github.com/ShemaiahYaba", color: "#181717" },
-    { name: "LinkedIn", url: "www.linkedin.com/in/shemaiah-yaba-shiaka", color: "#0A66C2" },
-    { name: "Instagram", url: "https://instagram.com/yabashiaka", color: "#E4405F" },
-    { name: "Telegram", url: "https://t.me/yabashiaka", color: "#24A1DE" },
-    { name: "WhatsApp", url: "https://wa.me/9039988198", color: "#25D366" },
+    { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/shemaiah-yaba-shiaka", icon: "linkedin" },
+    { name: "Instagram", url: "https://instagram.com/yabashiaka", icon: "instagram" },
+    { name: "Telegram", url: "https://t.me/yabashiaka", icon: "telegram" },
+    { name: "WhatsApp", url: "https://wa.me/9039988198", icon: "whatsapp" },
   ],
 };
