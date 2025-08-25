@@ -69,12 +69,12 @@
 }
 
 @layer utilities {
-  @keyframes scroll-y {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+  @keyframes scroll-x {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
   }
 
-  .animate-scroll-y {
-    animation: scroll-y 40s linear infinite;
+  .animate-scroll-x {
+    animation: scroll-x 40s linear infinite;
   }
 }

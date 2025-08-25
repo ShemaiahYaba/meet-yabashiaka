@@ -91,6 +91,9 @@ export const portfolioData: PortfolioData = {
     { name: "Python", icon: "python" },
     { name: "PostgreSQL", icon: "postgresql" },
     { name: "Docker", icon: "docker" },
+    { name: "React", icon: "react"},
+    { name: "Firebase", icon: "firebase"},
+    { name: "TensorFlow", icon: "tensorflow"},
   ],
   workShowcase: [
     {
