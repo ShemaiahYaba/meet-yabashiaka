@@ -86,11 +86,6 @@ export const icons: Record<string, IconConfig> = {
   // Data & Analytics
   d3js: { component: SiD3Dotjs, color: "#F9A03C" }, // D3.js orange
   tensorflow: { component: Tensorflow, color: "#FF6F00" }, // TensorFlow orange
-  
-  // Architecture & Design (using custom Mspace icon for non-standard tech)
-  systemdesign: { component: MspaceIcon, color: "#6366F1" }, // System Design purple
-  apidevelopment: { component: MspaceIcon, color: "#10B981" }, // API 
-  // Development green
 
   supabase: { component: Supabase, color: "#10B981" }, // Supabase green
 
