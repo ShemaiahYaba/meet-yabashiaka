@@ -37,9 +37,9 @@ export default function HeroSection({ name, hebrewName, tagline, stats }: HeroSe
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-4">
             <h1 className="text-5xl font-extrabold tracking-tighter sm:text-6xl md:text-7xl">
-              {hebrewName}
+              {name}
             </h1>
-            <p className="font-code text-lg text-muted-foreground">{name}</p>
+            <p className="font-code text-lg text-muted-foreground">{hebrewName}</p>
           </div>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl">
             {tagline}
