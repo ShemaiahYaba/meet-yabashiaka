@@ -28,8 +28,8 @@ interface WorkSectionProps {
 }
 
 const ProjectCard = ({ project }: { project: Project }) => (
-    <Card key={project.title} className="group overflow-hidden h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col border-border/80">
-      <div className="relative h-60 w-full">
+    <Card key={project.title} className="group h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col border-border/80">
+      <div className="relative h-60 w-full overflow-hidden rounded-t-lg">
         <Image
           src={project.defaultImage}
           alt={project.title}
