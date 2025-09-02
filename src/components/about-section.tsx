@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Briefcase, GraduationCap, Award, Eye } from 'lucide-react';
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import Image from 'next/image';
 
 interface Education {
@@ -12,7 +12,7 @@ interface Education {
 interface Certification {
   name: string;
   issuer: string;
-  url: string;
+  defaultImage: string;
 }
 
 interface AboutSectionProps {
@@ -66,27 +66,33 @@ export default function AboutSection({ id, bio, education, certifications }: Abo
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  {certifications.map((cert) => (
-                    <div key={cert.name} className="flex items-center justify-between">
-                      <div>
-                        <h3 className="font-semibold">{cert.name}</h3>
-                        <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                  {certifications.map((cert) => {
+                    const imageSrc = cert.defaultImage || null;
+                    return (
+                      <div key={cert.name} className="flex items-center justify-between">
+                        <div>
+                          <h3 className="font-semibold">{cert.name}</h3>
+                          <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                        </div>
+                        {imageSrc && (
+                          <Dialog>
+                            <DialogTrigger asChild>
+                              <button className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary">
+                                <Eye className="h-5 w-5" />
+                                <span className="sr-only">View Certificate</span>
+                              </button>
+                            </DialogTrigger>
+                            <DialogContent className="max-w-3xl p-0">
+                              <DialogTitle className="sr-only">{cert.name} certificate</DialogTitle>
+                              <div className="relative aspect-video">
+                                <Image src={imageSrc} alt={`Certificate for ${cert.name}`} fill className="object-contain" />
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        )}
                       </div>
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <button className="text-muted-foreground transition-all duration-300 hover:scale-110 hover:text-primary">
-                            <Eye className="h-5 w-5" />
-                            <span className="sr-only">View Certificate</span>
-                          </button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-3xl p-0">
-                          <div className="relative aspect-video">
-                            <Image src={cert.url} alt={`Certificate for ${cert.name}`} fill className="object-contain" />
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </CardContent>
               </Card>
             </div>

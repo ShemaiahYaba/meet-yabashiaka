@@ -12,7 +12,7 @@ export default function ContactSection({ id }: ContactSectionProps) {
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of an amazing team. Feel free to reach out!
           </p>
           <a
-            href="mailto:contact@shemaiah.dev"
+            href="mailto:shemaiahwambebe@gmail.com"
             className="mt-8 inline-block rounded-md bg-primary px-8 py-3 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
           >
             Say Hello

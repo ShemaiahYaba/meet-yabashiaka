@@ -25,6 +25,7 @@ import {
   Render,
   ThreeJsDark,
   FlaskDark,
+  ShadcnUI,
 } from 'developer-icons';
 import InstagramIcon from '@/components/icons/instagram';
 import type { IconProps } from '@/components/icons/icon-props';
@@ -89,4 +90,5 @@ export const icons: Record<string, IconConfig> = {
   flask: { component: FlaskDark, color: "#000000" }, // Flask black
   reactnative: { component: TbBrandReactNative, color: "#62D4E3" }, // React Native blue
   expo: { component: SiExpo, color: "#00000" }, // Expo BLACK
+  shadcn: { component: ShadcnUI, color: "#000000" }, // ShadcnUI black
 };

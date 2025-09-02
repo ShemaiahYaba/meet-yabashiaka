@@ -12,7 +12,7 @@ export interface Education {
 export interface Certification {
   name: string;
   issuer: string;
-  url: string;
+  defaultImage: string;
 }
 
 export interface Skill {
@@ -63,8 +63,8 @@ interface PortfolioData {
   socialLinks: SocialLink[];
 }
 
-const completedSoloProjects = 3;
-const totalCollaborations = 1;
+const completedSoloProjects = 4;
+const totalCollaborations = 3;
 
 export const portfolioData: PortfolioData = {
   fullName: "Shemaiah",
@@ -72,10 +72,10 @@ export const portfolioData: PortfolioData = {
   tagline: "Backend developer & Music Producer",
   resumeUrl: "/Shemaiah-Resume.pdf",
   stats: [
-    { value: completedSoloProjects, label: "Projects Completed" },
     { value: 1, label: "Years of Coding" },
+    { value: completedSoloProjects, label: "Solo Projects Completed" },
     { value: totalCollaborations, label: "Collaborations" },
-    { value: 533, label: "GitHub Commits" },
+    { value: 550, label: "GitHub Commits" },
   ],
   bio: "I’m a backend developer who thrives on solving complex problems and building systems that scale. With a strong foundation in mathematics and self-directed engineering, I design robust APIs and backend architectures that power smooth user experiences. I help startups and teams turn ideas into products — one idea at a time. There’s value even in hidden places ✨",
   education: {
@@ -83,7 +83,7 @@ export const portfolioData: PortfolioData = {
     university: "Mountain Top University",
   },
   certifications: [
-    { name: "Ai Career Essentials", issuer: "ALX Africa", url: "https://placehold.co/1200x800" },
+    { name: "Ai Career Essentials", issuer: "ALX Africa", defaultImage: "/images/certifications/AICE.png" },
   ],
   skills: [
     {name: "HTML", proficiency: 90 },
@@ -104,10 +104,9 @@ export const portfolioData: PortfolioData = {
     { name: "DevOps", proficiency: 45 },
   ],
   techStack: [
-    { name: "React", icon: "react"},
-    { name: "Node.js", icon: "nodejs"},
-    { name: "Python", icon: "python"},
-    { name: "TypeScript", icon: "typescript"},
+    { name: "Next.js", icon: "nextjs"},
+    { name: "Typescript", icon: "typescript"},
+    { name: "Supabase", icon: "supabase"},
   ],
   workShowcase: [
     {
@@ -120,9 +119,9 @@ export const portfolioData: PortfolioData = {
         "/images/shemaiah/1.png",
         "/images/shemaiah/2.png",
       ],
-      github: "https://github.com/ShemaiahYaba/meet-yabashiaka/",
+      github: "",
       url: "https://meet-yabashiaka.vercel.app/",
-      tech: ["nextjs","typescript","tailwindcss", "vercel"],
+      tech: ["nextjs", "shadcn", "typescript", "vercel"],
       dataAiHint: "portfolio-website",
       isCollaboration: false,
       progress: 100,
@@ -137,13 +136,12 @@ export const portfolioData: PortfolioData = {
         "/images/lamp/landing.png",
         "/images/lamp/1.png",
         "/images/lamp/2.png",
-        "/images/lamp/3.png"
       ],
-      github: "https://github.com/ShemaiahYaba/lamp-initiative/",
+      github: "",
       url: "https://lamp-initiative.vercel.app/",
-      tech: ["nextjs","typescript","tailwindcss", "vercel"],
+      tech: ["nextjs", "shadcn", "typescript", "vercel"],
       dataAiHint: "company-website",
-      isCollaboration: true,
+      isCollaboration: false,
       progress: 100,
       isCompleted: true,
     },
@@ -160,11 +158,11 @@ export const portfolioData: PortfolioData = {
         "/images/result-flow/4.png",
         "/images/result-flow/5.png",
       ],
-      github: "https://github.com/ShemaiahYaba/result-flow/",
+      github: "",
       url: "https://result-flow.vercel.app/",
       tech: ["nextjs","typescript", "supabase", "vercel"],
       dataAiHint: "smart-result-management-system",
-      isCollaboration: false,
+      isCollaboration: true,
       progress: 100,
       isCompleted: true,
     },
@@ -181,12 +179,87 @@ export const portfolioData: PortfolioData = {
       ],
       github: "https://github.com/ShemaiahYaba/EigenValue_Visualization/",
       url: "https://mlab-inky.vercel.app/",
-      tech: ["react","typescript", "tailwindcss","threejs", "flask", "vercel", "render"],
+      tech: ["react", "tailwindcss", "typescript", "threejs", "flask", "vercel", "render"],
       dataAiHint: "eigen-value-visualization-platform",
       isCollaboration: false,
       progress: 100,
       isCompleted: true,
     },
+    {
+      title: "MTU-RapidCare",
+      description: "MTU-RapidCare is a modern emergency alert and rapid response system for clinics and healthcare environments. Built with Expo, React Native, and Supabase, it enables real-time emergency reporting, device alerts, and seamless communication between staff and responders.",
+      private: false,
+      defaultImage: "/images/mtu-rapidcare/landing.png",
+      gallery: [
+        "/images/mtu-rapidcare/landing.png",
+        "/images/mtu-rapidcare/1.png",
+        "/images/mtu-rapidcare/2.png",
+        "/images/mtu-rapidcare/3.png",
+      ],
+      github: "https://github.com/ShemaiahYaba/clinic-app/",
+      url: "*",
+      tech: ["reactnative", "typescript", "supabase", "expo"],
+      dataAiHint: "eigen-value-visualization-platform",
+      isCollaboration: true,
+      progress: 100,
+      isCompleted: true
+    },
+    {
+      title: "MTU-Chapel Admin",
+      description: "MTU-Chapel Admin is a feature-rich dashboard for managing Mountain Top University chapel activities. It streamlines service scheduling, attendance tracking, exeat management, absentee handling, and warning letter generation through an intuitive, efficient interface.",
+      private: true,
+      defaultImage: "/images/mtu-chapel-admin/landing.png",
+      gallery: [
+        "/images/mtu-chapel-admin/landing.png",
+        "/images/mtu-chapel-admin/1.png",
+        "/images/mtu-chapel-admin/2.png",
+        "/images/mtu-chapel-admin/3.png",
+      ],
+      github: "",
+      url: "",
+      tech: ["nextjs", "shadcn", "typescript", "supabase"],
+      dataAiHint: "eigen-value-visualization-platform",
+      isCollaboration: true,
+      progress: 60,
+      isCompleted: false
+    },
+    {
+      title: "Tidy",
+      description: "Tidy is an AI-powered task manager that turns unstructured ideas into organized, actionable plans, with smart categorization, priority suggestions, subtasks, labels, and export options for seamless productivity.",
+      private: true,
+      defaultImage: "/images/tidy/landing.png",
+      gallery: [
+        "/images/tidy/landing.png",
+        "/images/tidy/1.png",
+        "/images/tidy/2.png",
+      ],
+      github: "",
+      url: "",
+      tech: ["nextjs", "shadcn",],
+      dataAiHint: "ai-powered-task-management-app",
+      isCollaboration: false,
+      progress: 10,
+      isCompleted: false
+    },
+    // {
+    //   title: "Lock In",
+    //   description: "",
+    //   private: true,
+    //   defaultImage: "/images/lock-in/landing.png",
+    //   gallery: [
+    //     "/images/lock-in/landing.png",
+    //     "/images/lock-in/1.png",
+    //     "/images/lock-in/2.png",
+    //     "/images/lock-in/3.png",
+    //   ],
+    //   github: "",
+    //   url: "https://lock-in-kappa.vercel.app/",
+    //   tech: ["reactnative", "expo", "supabase", "typescript"],
+    //   dataAiHint: "eigen-value-visualization-platform",
+    //   isCollaboration: true,
+    //   progress: 40,
+    //   isCompleted: false
+    // },
   ],
   socialLinks: [
     { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github", color: "#181717" },
