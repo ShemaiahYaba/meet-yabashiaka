@@ -51,7 +51,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
       <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
       
       {/* Tech Icons with Tooltips */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 z-10 relative">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
         <TooltipProvider>
           {project.tech.map((techName) => (
             <Tooltip key={techName}>
