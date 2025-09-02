@@ -56,6 +56,7 @@ export function IconRenderer({ name, className, enableGlow }: IconRendererProps)
       style={dynamicStyle}
       className={`
         text-muted-foreground 
+        hover:text-[var(--brand-color)]
         transition-all 
         duration-300 
         ease-out
