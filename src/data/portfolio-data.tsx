@@ -12,6 +12,7 @@ export interface Education {
 export interface Certification {
   name: string;
   issuer: string;
+  url: string;
 }
 
 export interface Skill {
@@ -78,7 +79,7 @@ export const portfolioData: PortfolioData = {
     university: "Mountain Top University",
   },
   certifications: [
-    { name: "Ai Career Essentials", issuer: "ALX Africa" },
+    { name: "Ai Career Essentials", issuer: "ALX Africa", url: "https://placehold.co/1200x800" },
   ],
   skills: [
     {name: "HTML", proficiency: 90 },
