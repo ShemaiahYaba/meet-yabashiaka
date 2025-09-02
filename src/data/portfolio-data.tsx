@@ -34,6 +34,9 @@ export interface Project {
   url: string | null;
   tech: string[];
   dataAiHint: string;
+  isCollaboration: boolean;
+  progress: number; // Percentage, 0-100
+  isCompleted: boolean;
 }
 
 export interface SocialLink {
@@ -95,9 +98,10 @@ export const portfolioData: PortfolioData = {
     { name: "DevOps", proficiency: 45 },
   ],
   techStack: [
-    { name: "Next.js", icon: "nextjs" },
-    { name: "Supabase", icon: "supabase" },
-    { name: "Vercel", icon: "vercel" },
+    { name: "React", icon: "react"},
+    { name: "Node.js", icon: "nodejs"},
+    { name: "Python", icon: "python"},
+    { name: "TypeScript", icon: "typescript"},
   ],
   workShowcase: [
     {
@@ -113,7 +117,10 @@ export const portfolioData: PortfolioData = {
       github: "https://github.com/ShemaiahYaba/meet-yabashiaka/",
       url: "https://meet-yabashiaka.vercel.app/",
       tech: ["nextjs","typescript","tailwindcss", "vercel"],
-      dataAiHint: "portfolio-website"
+      dataAiHint: "portfolio-website",
+      isCollaboration: false,
+      progress: 100,
+      isCompleted: true,
     },
     {
       title: "LAMP",
@@ -129,7 +136,10 @@ export const portfolioData: PortfolioData = {
       github: "https://github.com/ShemaiahYaba/lamp-initiative/",
       url: "https://lamp-initiative.vercel.app/",
       tech: ["nextjs","typescript","tailwindcss", "vercel"],
-      dataAiHint: "company-website"
+      dataAiHint: "company-website",
+      isCollaboration: true,
+      progress: 100,
+      isCompleted: true,
     },
     {
       title: "ResultFlow",
@@ -147,7 +157,10 @@ export const portfolioData: PortfolioData = {
       github: "https://github.com/ShemaiahYaba/result-flow/",
       url: "https://result-flow.vercel.app/",
       tech: ["nextjs","typescript", "supabase", "vercel"],
-      dataAiHint: "smart-result-management-system"
+      dataAiHint: "smart-result-management-system",
+      isCollaboration: false,
+      progress: 100,
+      isCompleted: true,
     },
     {
       title: "MatrixLAB",
@@ -163,26 +176,11 @@ export const portfolioData: PortfolioData = {
       github: "https://github.com/ShemaiahYaba/EigenValue_Visualization/",
       url: "https://mlab-inky.vercel.app/",
       tech: ["react","typescript", "tailwindcss","threejs", "flask", "vercel", "render"],
-      dataAiHint: "eigen-value-visualization-platform"
+      dataAiHint: "eigen-value-visualization-platform",
+      isCollaboration: false,
+      progress: 100,
+      isCompleted: true,
     },
-    // {
-    //   title: "MTU-RapidCare",
-    //   description: "MTU-RapidCare is a modern emergency alert and rapid response system for clinics and healthcare environments. Built with Expo, React Native, and Supabase, it enables real-time emergency reporting, device alerts, and seamless communication between staff and responders.",
-    //   private: false,
-    //   defaultImage: "/images/mtu-rapidcare/landing.png",
-    //   gallery: [
-    //     "/images/mtu-rapidcare/landing.png",
-    //     "/images/mtu-rapidcare/1.png",
-    //     "/images/mtu-rapidcare/2.png",
-    //     "/images/mtu-rapidcare/3.png",
-    //   ],
-    //   github: "https://github.com/ShemaiahYaba/clinic-app/",
-    //   url: "https://mlab-inky.vercel.app/",
-    //   tech: ["reactnative", "expo","supabase", "typescript"],
-    //   dataAiHint: "eigen-value-visualization-platform"
-    // },
-    
-   
   ],
   socialLinks: [
     { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github" },
