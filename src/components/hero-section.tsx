@@ -1,5 +1,6 @@
 
 import { AnimatedStatCard } from './animated-stat-card';
+import Link from 'next/link';
 
 interface Stat {
   value: number;
@@ -31,6 +32,10 @@ const SubtlePattern = () => (
 );
 
 export default function HeroSection({ name, hebrewName, tagline, stats }: HeroSectionProps) {
+  const taglineParts = tagline.split('&');
+  const developerPart = taglineParts[0] ? taglineParts[0].trim() + ' &' : '';
+  const producerPart = taglineParts[1] ? taglineParts[1].trim() : '';
+  
   return (
     <section className="relative overflow-hidden py-24 md:py-32 lg:py-40">
       <SubtlePattern />
@@ -43,7 +48,12 @@ export default function HeroSection({ name, hebrewName, tagline, stats }: HeroSe
             <p className="font-code text-lg text-muted-foreground">{hebrewName}</p>
           </div>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl">
-            {tagline}
+            {developerPart}{' '}
+            {producerPart && (
+              <Link href="/music" className="text-primary underline-offset-4 hover:underline">
+                {producerPart}
+              </Link>
+            )}
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">

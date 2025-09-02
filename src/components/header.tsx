@@ -25,6 +25,7 @@ const navLinks = [
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
   { name: 'Work', href: '#work' },
+  { name: 'Music', href: '/music' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -49,6 +50,8 @@ export default function Header({ resumeUrl, socialLinks }: HeaderProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-muted-foreground transition-colors hover:text-[var(--brand-color)]"
+                  style={{ '--brand-color': link.color } as React.CSSProperties}
                 >
                   <IconRenderer name={link.icon} className="h-5 w-5" />
                   <span className="sr-only">{link.name}</span>

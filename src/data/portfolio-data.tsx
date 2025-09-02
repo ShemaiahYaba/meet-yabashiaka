@@ -44,6 +44,7 @@ export interface SocialLink {
   name: string;
   url: string;
   icon: string;
+  color: string;
 }
 
 interface PortfolioData {
@@ -62,15 +63,18 @@ interface PortfolioData {
   socialLinks: SocialLink[];
 }
 
+const completedSoloProjects = 3;
+const totalCollaborations = 1;
+
 export const portfolioData: PortfolioData = {
   fullName: "Shemaiah",
   hebrewName: "שְׁמַעְיָה",
-  tagline: "Full-Stack Developer & Creative Technologist.",
+  tagline: "Backend developer & Music Producer",
   resumeUrl: "/Shemaiah-Resume.pdf",
   stats: [
-    { value: 8, label: "Projects Completed" },
+    { value: completedSoloProjects, label: "Projects Completed" },
     { value: 1, label: "Years of Coding" },
-    { value: 1, label: "Collaborations" },
+    { value: totalCollaborations, label: "Collaborations" },
     { value: 533, label: "GitHub Commits" },
   ],
   bio: "I’m a backend developer who thrives on solving complex problems and building systems that scale. With a strong foundation in mathematics and self-directed engineering, I design robust APIs and backend architectures that power smooth user experiences. I help startups and teams turn ideas into products — one idea at a time. There’s value even in hidden places ✨",
@@ -185,10 +189,10 @@ export const portfolioData: PortfolioData = {
     },
   ],
   socialLinks: [
-    { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/shemaiah-yaba-shiaka", icon: "linkedin" },
-    { name: "Instagram", url: "https://instagram.com/yabashiaka", icon: "instagram" },
-    { name: "Telegram", url: "https://t.me/yabashiaka", icon: "telegram" },
-    { name: "WhatsApp", url: "https://wa.me/9039988198", icon: "whatsapp" },
+    { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github", color: "#181717" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/shemaiah-yaba-shiaka", icon: "linkedin", color: "#0A66C2" },
+    { name: "Instagram", url: "https://instagram.com/yabashiaka", icon: "instagram", color: "#E4405F" },
+    { name: "Telegram", url: "https://t.me/yabashiaka", icon: "telegram", color: "#26A5E4" },
+    { name: "WhatsApp", url: "https://wa.me/9039988198", icon: "whatsapp", color: "#25D366" },
   ],
 };
