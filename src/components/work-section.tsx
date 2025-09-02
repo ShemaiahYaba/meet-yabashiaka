@@ -51,7 +51,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
       <p className="text-muted-foreground mb-4 flex-grow">{project.description}</p>
       
       {/* Tech Icons with Tooltips */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4 z-10 relative">
         <TooltipProvider>
           {project.tech.map((techName) => (
             <Tooltip key={techName}>
@@ -155,9 +155,6 @@ const ProjectCard = ({ project }: { project: Project }) => (
 );
 
 export default function WorkSection({ id, projects }: WorkSectionProps) {
-  const completedProjects = projects.filter(p => !p.isCollaboration);
-  const collaborations = projects.filter(p => p.isCollaboration);
-
   return (
     <section id={id} className="py-16 md:py-24 bg-secondary">
       <div className="container mx-auto px-4 md:px-6">
@@ -166,29 +163,11 @@ export default function WorkSection({ id, projects }: WorkSectionProps) {
           <p className="mt-4 text-lg text-muted-foreground">A selection of projects I'm proud of.</p>
         </div>
 
-        {/* Completed Projects Section */}
-        {completedProjects.length > 0 && (
-          <div className="mb-16">
-            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl mb-8 text-center">Projects Completed</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {completedProjects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Collaborations Section */}
-        {collaborations.length > 0 && (
-          <div>
-            <h3 className="text-2xl font-bold tracking-tight sm:text-3xl mb-8 text-center">Collaborations</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {collaborations.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <ProjectCard key={project.title} project={project} />
+          ))}
+        </div>
       </div>
     </section>
   );
