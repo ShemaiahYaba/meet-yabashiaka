@@ -69,6 +69,7 @@ export const portfolioData: PortfolioData = {
   stats: [
     { value: 8, label: "Projects Completed" },
     { value: 1, label: "Years of Coding" },
+    { value: 1, label: "Collaborations" },
     { value: 533, label: "GitHub Commits" },
   ],
   bio: "I’m a backend developer who thrives on solving complex problems and building systems that scale. With a strong foundation in mathematics and self-directed engineering, I design robust APIs and backend architectures that power smooth user experiences. I help startups and teams turn ideas into products — one idea at a time. There’s value even in hidden places ✨",

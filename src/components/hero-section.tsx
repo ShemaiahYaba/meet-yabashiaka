@@ -1,3 +1,4 @@
+
 import { AnimatedStatCard } from './animated-stat-card';
 
 interface Stat {
@@ -45,7 +46,7 @@ export default function HeroSection({ name, hebrewName, tagline, stats }: HeroSe
             {tagline}
           </p>
         </div>
-        <div className="mx-auto mt-16 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
           {stats.map((stat) => (
             <AnimatedStatCard key={stat.label} value={stat.value} label={stat.label} />
           ))}

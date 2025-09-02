@@ -9,11 +9,6 @@ import ContactSection from '@/components/contact-section';
 import Footer from '@/components/footer';
 
 export default function Home() {
-  const completedProjectsCount = portfolioData.workShowcase.filter(p => p.isCompleted && !p.isCollaboration).length;
-  const heroStats = portfolioData.stats.map(stat => 
-    stat.label === "Projects Completed" ? { ...stat, value: completedProjectsCount } : stat
-  );
-
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header resumeUrl={portfolioData.resumeUrl} socialLinks={portfolioData.socialLinks} />
@@ -22,7 +17,7 @@ export default function Home() {
           name={portfolioData.fullName}
           hebrewName={portfolioData.hebrewName}
           tagline={portfolioData.tagline}
-          stats={heroStats}
+          stats={portfolioData.stats}
         />
         <AboutSection
           id="about"
