@@ -1,4 +1,3 @@
-
 export interface Stat {
   value: number;
   label: string;
@@ -70,7 +69,7 @@ export const portfolioData: PortfolioData = {
   fullName: "Shemaiah",
   hebrewName: "שְׁמַעְיָה",
   tagline: "Backend developer & Music Producer",
-  resumeUrl: "/Shemaiah-Resume.pdf",
+  resumeUrl: "/resume.pdf",
   stats: [
     { value: 1, label: "Years of Coding" },
     { value: completedSoloProjects, label: "Solo Projects Completed" },
@@ -83,12 +82,16 @@ export const portfolioData: PortfolioData = {
     university: "Mountain Top University",
   },
   certifications: [
-    { name: "Ai Career Essentials", issuer: "ALX Africa", defaultImage: "/images/certifications/AICE.png" },
+    {
+      name: "Ai Career Essentials",
+      issuer: "ALX Africa",
+      defaultImage: "/images/certifications/AICE.png",
+    },
   ],
   skills: [
-    {name: "HTML", proficiency: 90 },
+    { name: "HTML", proficiency: 90 },
     { name: "CSS", proficiency: 90 },
-    {name: "TailwindCSS", proficiency: 80 },
+    { name: "TailwindCSS", proficiency: 80 },
     { name: "JavaScript", proficiency: 80 },
     { name: "TypeScript", proficiency: 65 },
     { name: "React", proficiency: 80 },
@@ -104,14 +107,15 @@ export const portfolioData: PortfolioData = {
     { name: "DevOps", proficiency: 45 },
   ],
   techStack: [
-    { name: "Next.js", icon: "nextjs"},
-    { name: "Typescript", icon: "typescript"},
-    { name: "Supabase", icon: "supabase"},
+    { name: "Next.js", icon: "nextjs" },
+    { name: "Typescript", icon: "typescript" },
+    { name: "Supabase", icon: "supabase" },
   ],
   workShowcase: [
     {
       title: "Shemaiah.",
-      description: "Shemaiah is a modern portfolio website that showcases my skills, projects, and contact information.",
+      description:
+        "Shemaiah is a modern portfolio website that showcases my skills, projects, and contact information.",
       private: true,
       defaultImage: "/images/shemaiah/landing.png",
       gallery: [
@@ -129,7 +133,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       title: "LAMP",
-      description: "The Official Website of LAMP - Level up and maximize your potential.",
+      description:
+        "The Official Website of LAMP - Level up and maximize your potential.",
       private: true,
       defaultImage: "/images/lamp/landing.png",
       gallery: [
@@ -147,7 +152,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       title: "ResultFlow",
-      description: "ResultFlow is a smart result management system that helps universities automate marksheet formatting, grading, and result generation.",
+      description:
+        "ResultFlow is a smart result management system that helps universities automate marksheet formatting, grading, and result generation.",
       private: true,
       defaultImage: "/images/result-flow/landing.png",
       gallery: [
@@ -160,7 +166,7 @@ export const portfolioData: PortfolioData = {
       ],
       github: "",
       url: "https://result-flow.vercel.app/",
-      tech: ["nextjs","typescript", "supabase", "vercel"],
+      tech: ["nextjs", "typescript", "supabase", "vercel"],
       dataAiHint: "smart-result-management-system",
       isCollaboration: true,
       progress: 100,
@@ -168,7 +174,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       title: "MatrixLAB",
-      description: "MatrixLAB is a modern educational web app that helps users intuitively explore the behavior of eigenvalues, eigenvectors, and principal components through interactive visualizations in 2D and 3D. Designed for students and educators in linear algebra, data science, and machine learning.",
+      description:
+        "MatrixLAB is a modern educational web app that helps users intuitively explore the behavior of eigenvalues, eigenvectors, and principal components through interactive visualizations in 2D and 3D. Designed for students and educators in linear algebra, data science, and machine learning.",
       private: false,
       defaultImage: "/images/matrixlab/landing.png",
       gallery: [
@@ -179,7 +186,15 @@ export const portfolioData: PortfolioData = {
       ],
       github: "https://github.com/ShemaiahYaba/EigenValue_Visualization/",
       url: "https://mlab-inky.vercel.app/",
-      tech: ["react", "tailwindcss", "typescript", "threejs", "flask", "vercel", "render"],
+      tech: [
+        "react",
+        "tailwindcss",
+        "typescript",
+        "threejs",
+        "flask",
+        "vercel",
+        "render",
+      ],
       dataAiHint: "eigen-value-visualization-platform",
       isCollaboration: false,
       progress: 100,
@@ -187,7 +202,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       title: "MTU-RapidCare",
-      description: "MTU-RapidCare is a modern emergency alert and rapid response system for clinics and healthcare environments. Built with Expo, React Native, and Supabase, it enables real-time emergency reporting, device alerts, and seamless communication between staff and responders.",
+      description:
+        "MTU-RapidCare is a modern emergency alert and rapid response system for clinics and healthcare environments. Built with Expo, React Native, and Supabase, it enables real-time emergency reporting, device alerts, and seamless communication between staff and responders.",
       private: false,
       defaultImage: "/images/mtu-rapidcare/landing.png",
       gallery: [
@@ -202,11 +218,12 @@ export const portfolioData: PortfolioData = {
       dataAiHint: "eigen-value-visualization-platform",
       isCollaboration: true,
       progress: 100,
-      isCompleted: true
+      isCompleted: true,
     },
     {
       title: "MTU-Chapel Admin",
-      description: "MTU-Chapel Admin is a feature-rich dashboard for managing Mountain Top University chapel activities. It streamlines service scheduling, attendance tracking, exeat management, absentee handling, and warning letter generation through an intuitive, efficient interface.",
+      description:
+        "MTU-Chapel Admin is a feature-rich dashboard for managing Mountain Top University chapel activities. It streamlines service scheduling, attendance tracking, exeat management, absentee handling, and warning letter generation through an intuitive, efficient interface.",
       private: true,
       defaultImage: "/images/mtu-chapel-admin/landing.png",
       gallery: [
@@ -221,11 +238,12 @@ export const portfolioData: PortfolioData = {
       dataAiHint: "eigen-value-visualization-platform",
       isCollaboration: true,
       progress: 60,
-      isCompleted: false
+      isCompleted: false,
     },
     {
       title: "Tidy",
-      description: "Tidy is an AI-powered task manager that turns unstructured ideas into organized, actionable plans, with smart categorization, priority suggestions, subtasks, labels, and export options for seamless productivity.",
+      description:
+        "Tidy is an AI-powered task manager that turns unstructured ideas into organized, actionable plans, with smart categorization, priority suggestions, subtasks, labels, and export options for seamless productivity.",
       private: true,
       defaultImage: "/images/tidy/landing.png",
       gallery: [
@@ -235,11 +253,11 @@ export const portfolioData: PortfolioData = {
       ],
       github: "",
       url: "",
-      tech: ["nextjs", "shadcn",],
+      tech: ["nextjs", "shadcn"],
       dataAiHint: "ai-powered-task-management-app",
       isCollaboration: false,
       progress: 10,
-      isCompleted: false
+      isCompleted: false,
     },
     // {
     //   title: "Lock In",
@@ -262,10 +280,35 @@ export const portfolioData: PortfolioData = {
     // },
   ],
   socialLinks: [
-    { name: "GitHub", url: "https://github.com/ShemaiahYaba", icon: "github", color: "#181717" },
-    { name: "LinkedIn", url: "https://www.linkedin.com/in/shemaiah-yaba-shiaka", icon: "linkedin", color: "#0A66C2" },
-    { name: "Instagram", url: "https://instagram.com/yabashiaka", icon: "instagram", color: "#E4405F" },
-    { name: "Telegram", url: "https://t.me/yabashiaka", icon: "telegram", color: "#26A5E4" },
-    { name: "WhatsApp", url: "https://wa.me/9039988198", icon: "whatsapp", color: "#25D366" },
+    {
+      name: "GitHub",
+      url: "https://github.com/ShemaiahYaba",
+      icon: "github",
+      color: "#181717",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/shemaiah-yaba-shiaka",
+      icon: "linkedin",
+      color: "#0A66C2",
+    },
+    {
+      name: "Instagram",
+      url: "https://instagram.com/yabashiaka",
+      icon: "instagram",
+      color: "#E4405F",
+    },
+    {
+      name: "Telegram",
+      url: "https://t.me/yabashiaka",
+      icon: "telegram",
+      color: "#26A5E4",
+    },
+    {
+      name: "WhatsApp",
+      url: "https://wa.me/9039988198",
+      icon: "whatsapp",
+      color: "#25D366",
+    },
   ],
 };
