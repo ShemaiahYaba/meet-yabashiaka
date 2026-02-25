@@ -80,10 +80,10 @@
   }
 
   .animate-scroll-x {
-    animation: scroll-x 40s linear infinite;
+    animation: scroll-x 20s linear infinite;
   }
 
   .animate-scroll-x-reverse {
-    animation: scroll-x-reverse 35s linear infinite;
+    animation: scroll-x-reverse 20s linear infinite;
   }
 }
