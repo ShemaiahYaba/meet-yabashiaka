@@ -1,7 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect, useRef } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useState, useEffect, useRef } from "react";
 
 interface AnimatedStatCardProps {
   value: number;
@@ -21,7 +20,7 @@ export function AnimatedStatCard({ value, label }: AnimatedStatCardProps) {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     const currentRef = ref.current;
@@ -61,16 +60,12 @@ export function AnimatedStatCard({ value, label }: AnimatedStatCardProps) {
 
   return (
     <div ref={ref}>
-      <Card className="text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-card/50 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="text-5xl font-extrabold text-primary">
-            {count}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm font-medium text-muted-foreground">{label}</p>
-        </CardContent>
-      </Card>
+      <div className="rounded-md border border-border bg-[hsl(var(--card))] p-6 text-center transition-colors hover:border-[hsl(var(--muted-foreground)_/_0.4)]">
+        <p className="font-code text-4xl font-bold text-foreground">{count}</p>
+        <p className="mt-2 text-sm text-[hsl(var(--muted-foreground))]">
+          {label}
+        </p>
+      </div>
     </div>
   );
 }
