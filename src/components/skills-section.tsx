@@ -12,206 +12,47 @@ interface SkillsSectionProps {
   techStack: Tech[];
 }
 
-const ScrollingSkillsMarquee = ({ skills }: { skills: Skill[] }) => {
-  const extendedSkills = [...skills, ...skills, ...skills, ...skills];
+const SkillBar = ({ skill }: { skill: Skill }) => {
+  const iconKey = skill.name
+    .toLowerCase()
+    .replace(/ \/ /g, "")
+    .replace(/\./g, "")
+    .replace(/ /g, "");
+  const hasIcon = Object.keys(icons).includes(iconKey);
+  const barColor = hasIcon ? icons[iconKey]?.color : "hsl(var(--primary))";
 
   return (
-    <div className="relative w-full overflow-hidden py-12">
-      <div className="flex animate-scroll-x hover:[animation-play-state:paused]">
-        {extendedSkills.map((skill, index) => {
-          const iconKey = skill.name
-            .toLowerCase()
-            .replace(/ \/ /g, "")
-            .replace(/\./g, "")
-            .replace(/ /g, "");
-          const hasIcon = Object.keys(icons).includes(iconKey);
-
-          return (
-            <div
-              key={`${skill.name}-${index}`}
-              className="group/item relative flex-shrink-0 w-40 h-48 flex flex-col items-center justify-center p-4 mx-3 rounded-md border border-border bg-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--muted-foreground)_/_0.5)]"
-              onMouseEnter={(e) => {
-                const scrollContainer = e.currentTarget.closest(
-                  ".animate-scroll-x",
-                ) as HTMLElement;
-                if (scrollContainer) {
-                  scrollContainer.style.animationPlayState = "paused";
-                }
-              }}
-              onMouseLeave={(e) => {
-                const scrollContainer = e.currentTarget.closest(
-                  ".animate-scroll-x",
-                ) as HTMLElement;
-                if (scrollContainer) {
-                  scrollContainer.style.animationPlayState = "running";
-                }
-              }}
-            >
-              {/* Progress Bar Background (Bottom-to-Top Fill) */}
-              <div
-                className="absolute bottom-0 left-0 w-full rounded-b-md transition-all duration-500 ease-out group-hover/item:opacity-100 opacity-0 -z-10"
-                style={{
-                  height: `${skill.proficiency}%`,
-                  backgroundColor: hasIcon
-                    ? `${icons[iconKey]?.color}15`
-                    : "hsl(var(--primary)/0.08)",
-                }}
-              />
-
-              {/* Content Container */}
-              <div className="flex flex-col items-center justify-center gap-3 text-center relative z-10 w-full">
-                {/* Icon */}
-                {hasIcon && (
-                  <div
-                    className="transition-all duration-300 ease-out group-hover/item:scale-110"
-                    style={
-                      {
-                        "--brand-color":
-                          icons[iconKey]?.color || "hsl(var(--primary))",
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div className="transition-colors duration-300 text-[hsl(var(--muted-foreground))] group-hover/item:text-[var(--brand-color)]">
-                      <IconRenderer
-                        name={iconKey}
-                        className="h-10 w-10"
-                        enableGlow={false}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {/* Skill Name Label */}
-                <p className="text-sm font-medium text-foreground">
-                  {skill.name}
-                </p>
-
-                {/* Percentage on hover */}
-                <div className="opacity-0 transition-all duration-300 ease-out group-hover/item:opacity-100">
-                  <span
-                    className="font-code text-lg font-bold"
-                    style={{
-                      color: hasIcon
-                        ? icons[iconKey]?.color
-                        : "hsl(var(--primary))",
-                    }}
-                  >
-                    {skill.proficiency}%
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+    <div className="group flex items-center gap-3">
+      {/* Icon */}
+      <div className="w-6 flex-shrink-0 flex justify-center">
+        {hasIcon ? (
+          <IconRenderer name={iconKey} className="h-4 w-4" enableGlow={false} />
+        ) : (
+          <div className="h-4 w-4 rounded-full border border-border bg-[hsl(var(--muted))] flex items-center justify-center">
+            <span className="text-[8px] font-bold text-primary">
+              {skill.name.charAt(0)}
+            </span>
+          </div>
+        )}
       </div>
-    </div>
-  );
-};
-
-// Buzzword Cloud - Scrolls in opposite direction
-const ScrollingBuzzwordMarquee = ({ buzzwords }: { buzzwords: Skill[] }) => {
-  const extendedBuzzwords = [
-    ...buzzwords,
-    ...buzzwords,
-    ...buzzwords,
-    ...buzzwords,
-  ];
-
-  return (
-    <div className="relative w-full overflow-hidden py-8">
-      <div className="flex animate-scroll-x-reverse hover:[animation-play-state:paused]">
-        {extendedBuzzwords.map((buzzword, index) => {
-          const iconKey = buzzword.name
-            .toLowerCase()
-            .replace(/ \/ /g, "")
-            .replace(/\./g, "")
-            .replace(/ /g, "");
-          const hasIcon = Object.keys(icons).includes(iconKey);
-
-          return (
-            <div
-              key={`${buzzword.name}-${index}`}
-              className="group/item relative flex-shrink-0 w-40 h-48 flex flex-col items-center justify-center p-4 mx-3 rounded-md border border-border bg-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--muted-foreground)_/_0.5)]"
-              onMouseEnter={(e) => {
-                const scrollContainer = e.currentTarget.closest(
-                  ".animate-scroll-x-reverse",
-                ) as HTMLElement;
-                if (scrollContainer) {
-                  scrollContainer.style.animationPlayState = "paused";
-                }
-              }}
-              onMouseLeave={(e) => {
-                const scrollContainer = e.currentTarget.closest(
-                  ".animate-scroll-x-reverse",
-                ) as HTMLElement;
-                if (scrollContainer) {
-                  scrollContainer.style.animationPlayState = "running";
-                }
-              }}
-            >
-              {/* Progress Bar Background */}
-              <div
-                className="absolute bottom-0 left-0 w-full rounded-b-md transition-all duration-500 ease-out group-hover/item:opacity-100 opacity-0 -z-10"
-                style={{
-                  height: `${buzzword.proficiency}%`,
-                  backgroundColor: hasIcon
-                    ? `${icons[iconKey]?.color}15`
-                    : "hsl(var(--primary)/0.08)",
-                }}
-              />
-
-              {/* Content Container */}
-              <div className="flex flex-col items-center justify-center gap-3 text-center relative z-10 w-full">
-                {/* Icon */}
-                {hasIcon ? (
-                  <div
-                    className="transition-all duration-300 ease-out group-hover/item:scale-110"
-                    style={
-                      {
-                        "--brand-color":
-                          icons[iconKey]?.color || "hsl(var(--primary))",
-                      } as React.CSSProperties
-                    }
-                  >
-                    <div className="transition-colors duration-300 text-[hsl(var(--muted-foreground))] group-hover/item:text-[var(--brand-color)]">
-                      <IconRenderer
-                        name={iconKey}
-                        className="h-10 w-10"
-                        enableGlow={false}
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="h-10 w-10 rounded-full border border-border bg-[hsl(var(--muted))] flex items-center justify-center">
-                    <span className="text-xs font-bold text-primary">
-                      {buzzword.name.charAt(0)}
-                    </span>
-                  </div>
-                )}
-
-                {/* Buzzword Name Label */}
-                <p className="text-sm font-medium text-foreground">
-                  {buzzword.name}
-                </p>
-
-                {/* Percentage on hover */}
-                <div className="opacity-0 transition-all duration-300 ease-out group-hover/item:opacity-100">
-                  <span
-                    className="font-code text-lg font-bold"
-                    style={{
-                      color: hasIcon
-                        ? icons[iconKey]?.color
-                        : "hsl(var(--primary))",
-                    }}
-                  >
-                    {buzzword.proficiency}%
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+      {/* Name */}
+      <span className="w-24 flex-shrink-0 text-sm text-foreground truncate">
+        {skill.name}
+      </span>
+      {/* Bar */}
+      <div className="flex-1 h-2 rounded-full bg-[hsl(var(--muted))] overflow-hidden">
+        <div
+          className="h-full rounded-full transition-all duration-700 ease-out"
+          style={{
+            width: `${skill.proficiency}%`,
+            backgroundColor: barColor,
+          }}
+        />
       </div>
+      {/* Percentage */}
+      <span className="font-code text-xs text-[hsl(var(--muted-foreground))] w-10 text-right">
+        {skill.proficiency}%
+      </span>
     </div>
   );
 };
@@ -223,40 +64,48 @@ export default function SkillsSection({
   techStack,
 }: SkillsSectionProps) {
   return (
-    <section id={id} className="border-t border-border py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-            Skills & Technologies
-          </h2>
-          <p className="mt-4 text-base text-[hsl(var(--muted-foreground))]">
-            My technical expertise and the tools I love to use.
-          </p>
+    <section id={id}>
+      {/* Featured Tech Stack */}
+      <div className="flex items-center gap-2 mb-6">
+        <h2 className="text-base font-semibold text-foreground">Tech Stack</h2>
+        <div className="flex items-center gap-3 ml-3">
+          {techStack.slice(0, 4).map((tech) => (
+            <div key={tech.name} className="group/tech">
+              <IconRenderer
+                name={tech.icon}
+                className="h-6 w-6 transition-transform duration-300 group-hover/tech:scale-110"
+                enableGlow={true}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
-          {/* Featured Tech Stack Row */}
-          <div className="mt-8 flex justify-center items-center gap-8">
-            {techStack.slice(0, 4).map((tech) => (
-              <div key={tech.name} className="group/tech">
-                <IconRenderer
-                  name={tech.icon}
-                  className="h-12 w-12 transition-all duration-300 group-hover/tech:scale-110"
-                  enableGlow={true}
-                />
-              </div>
+      {/* Languages & Frameworks */}
+      <div className="rounded-md border border-border bg-[hsl(var(--card))] p-5">
+        <h3 className="text-sm font-semibold text-foreground mb-4">
+          Languages & Frameworks
+        </h3>
+        <div className="space-y-3">
+          {skills.map((skill) => (
+            <SkillBar key={skill.name} skill={skill} />
+          ))}
+        </div>
+      </div>
+
+      {/* Concepts & Methodologies */}
+      {buzzwords.length > 0 && (
+        <div className="rounded-md border border-border bg-[hsl(var(--card))] p-5 mt-4">
+          <h3 className="text-sm font-semibold text-foreground mb-4">
+            Concepts & Methodologies
+          </h3>
+          <div className="space-y-3">
+            {buzzwords.map((skill) => (
+              <SkillBar key={skill.name} skill={skill} />
             ))}
           </div>
         </div>
-
-        <ScrollingSkillsMarquee skills={skills} />
-
-        {/* Buzzwords Section */}
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold text-center mb-6 text-[hsl(var(--muted-foreground))]">
-            Concepts & Methodologies
-          </h3>
-          <ScrollingBuzzwordMarquee buzzwords={buzzwords} />
-        </div>
-      </div>
+      )}
     </section>
   );
 }
