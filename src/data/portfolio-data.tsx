@@ -126,8 +126,8 @@ export const portfolioData: PortfolioData = {
     { name: "CI/CD", proficiency: 80 },
   ],
   techStack: [
-    { name: "Node.js", icon: "nodejs" },
-    { name: "Python", icon: "python" },
+    { name: "NestJS", icon: "nestjs" },
+    { name: "Typescript", icon: "typescript" },
     { name: "Supabase", icon: "supabase" },
   ],
   workShowcase: [
