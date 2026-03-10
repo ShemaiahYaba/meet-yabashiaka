@@ -68,10 +68,10 @@ const totalCollaborations = 3;
 export const portfolioData: PortfolioData = {
   fullName: "Shemaiah",
   hebrewName: "שְׁמַעְיָה",
-  tagline: "Backend developer & Music Producer",
+  tagline: "Backend Engineer | DevOps Engineer | Music Producer",
   resumeUrl: "/resume.pdf",
   stats: [
-    { value: 3, label: "Years of Coding" },
+    { value: 3, label: "Years of Experience" },
     { value: completedSoloProjects, label: "Solo Projects Completed" },
     { value: totalCollaborations, label: "Collaborations" },
     { value: 550, label: "GitHub Commits" },
