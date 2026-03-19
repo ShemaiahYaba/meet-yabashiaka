@@ -44,6 +44,31 @@
   }
 }
 
+/* Admin light theme */
+.admin-light {
+  color-scheme: light;
+  background-color: #f6f8fa;
+  color: #1c2128;
+}
+
+/* Ensure all text inside admin-light is dark by default */
+.admin-light * {
+  border-color: #d0d7de;
+}
+
+.admin-light input,
+.admin-light textarea,
+.admin-light select {
+  background-color: #ffffff;
+  color: #1c2128;
+  border-color: #d0d7de;
+}
+
+.admin-light input::placeholder,
+.admin-light textarea::placeholder {
+  color: #9198a1;
+}
+
 @layer utilities {
   @keyframes scroll-x {
     0% {

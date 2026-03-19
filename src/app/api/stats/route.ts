@@ -6,7 +6,7 @@ export async function GET() {
   const [projects, config, githubStats] = await Promise.all([
     getProjects(),
     getAdminConfig(),
-    fetchGithubStats().catch(() => ({ totalContributions: 0, pinnedRepos: [] })),
+    fetchGithubStats().catch(() => ({ totalContributions: 0, contributionGraph: [], pinnedRepos: [] })),
   ]);
 
   const visibleProjects = projects.filter((p) => p.visible);
@@ -27,5 +27,6 @@ export async function GET() {
     soloProjects,
     collaborations,
     githubCommits,
+    contributionGraph: githubStats.contributionGraph,
   });
 }

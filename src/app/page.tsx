@@ -6,6 +6,7 @@ import SkillsSection from "@/components/skills-section";
 import WorkSection from "@/components/work-section";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
+import ContributionGraphSection from "@/components/contribution-graph-section";
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
           tagline={portfolioData.tagline}
           yearsOfCoding={portfolioData.yearsOfCoding}
         />
+
+        {/* Contribution Graph — full width */}
+        <ContributionGraphSection />
 
         {/* GitHub Profile Layout: Sidebar + Main Content */}
         <div className="container mx-auto px-4 md:px-6 pb-16">

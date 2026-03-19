@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Progress } from "@/components/ui/progress";
 import { useProjects } from "@/hooks/useProjects";
+import { resolveImageSrc } from "@/lib/projects";
 
 interface WorkSectionProps {
   id: string;
@@ -61,11 +62,12 @@ const ProjectCard = ({ project }: { project: DisplayProject }) => (
     <div className="relative h-40 w-full overflow-hidden">
       {project.defaultImage ? (
         <Image
-          src={project.defaultImage}
+          src={resolveImageSrc(project.defaultImage)}
           alt={project.title}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
           data-ai-hint={project.dataAiHint}
+          unoptimized={project.defaultImage.includes("blob.vercel-storage.com")}
         />
       ) : (
         <div className="h-full w-full bg-[hsl(var(--muted))] flex items-center justify-center">
@@ -172,10 +174,11 @@ const ProjectCard = ({ project }: { project: DisplayProject }) => (
                       <CarouselItem key={index}>
                         <div className="relative aspect-video">
                           <Image
-                            src={imgSrc}
+                            src={resolveImageSrc(imgSrc)}
                             alt={`${project.title} - Image ${index + 1}`}
                             fill
                             className="object-contain"
+                            unoptimized={imgSrc.includes("blob.vercel-storage.com")}
                           />
                         </div>
                       </CarouselItem>

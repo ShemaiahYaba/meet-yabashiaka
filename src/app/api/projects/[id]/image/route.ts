@@ -23,7 +23,7 @@ export async function POST(
   const filename = `images/${slug}/${Date.now()}.${ext}`;
 
   const blob = await put(filename, file, {
-    access: "public",
+    access: "private",
     addRandomSuffix: false,
   });
 

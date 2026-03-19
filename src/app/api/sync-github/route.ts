@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/lib/auth";
 import { getProjects, saveProjects } from "@/lib/projects";
-import { fetchGithubStats, fetchAllRepos, fetchRepoReadme } from "@/lib/github";
+import { fetchGithubStats, fetchAllRepos, fetchRepoReadme, detectCollaboration } from "@/lib/github";
 
 function isCronRequest(request: Request): boolean {
   const cronSecret = process.env.CRON_SECRET;
@@ -31,10 +31,14 @@ async function runSync(request: Request) {
       const repo = repoMap.get(project.id);
       if (!repo) return project;
 
-      const readme = await fetchRepoReadme(project.id);
+      const [readme, isCollab] = await Promise.all([
+        fetchRepoReadme(project.id),
+        detectCollaboration(project.id),
+      ]);
 
       return {
         ...project,
+        isCollaboration: isCollab,
         github: {
           name: repo.name,
           description: repo.description ?? "",
@@ -49,35 +53,38 @@ async function runSync(request: Request) {
     })
   );
 
-  // Add newly pinned repos that aren't tracked yet
+  // Add all repos not yet tracked (hidden by default, admin enables what they want)
   const trackedIds = new Set(existingProjects.map((p) => p.id));
   const maxSort = Math.max(...existingProjects.map((p) => p.sortOrder), -1);
   let sortOffset = maxSort + 1;
 
-  for (const pinnedRepo of githubStats.pinnedRepos) {
-    if (!trackedIds.has(pinnedRepo.name)) {
-      const readme = await fetchRepoReadme(pinnedRepo.name);
+  for (const repo of allRepos) {
+    if (!trackedIds.has(repo.name)) {
+      const [readme, isCollab] = await Promise.all([
+        fetchRepoReadme(repo.name),
+        detectCollaboration(repo.name),
+      ]);
       updated.push({
-        id: pinnedRepo.name,
-        fullName: pinnedRepo.nameWithOwner,
-        visible: false, // hidden by default until admin enables
+        id: repo.name,
+        fullName: repo.nameWithOwner,
+        visible: false,
         sortOrder: sortOffset++,
-        isCollaboration: false,
+        isCollaboration: isCollab,
         liveUrl: null,
         customTitle: null,
         customDescription: null,
         customImage: null,
         customGallery: [],
-        tech: pinnedRepo.topics,
+        tech: repo.topics,
         progress: 0,
         github: {
-          name: pinnedRepo.name,
-          description: pinnedRepo.description ?? "",
+          name: repo.name,
+          description: repo.description ?? "",
           readme,
-          stars: pinnedRepo.stargazerCount,
-          topics: pinnedRepo.topics,
-          isPrivate: pinnedRepo.isPrivate,
-          htmlUrl: pinnedRepo.url,
+          stars: repo.stargazerCount,
+          topics: repo.topics,
+          isPrivate: repo.isPrivate,
+          htmlUrl: repo.url,
           lastSynced: new Date().toISOString(),
         },
       });

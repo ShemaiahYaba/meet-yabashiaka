@@ -1,4 +1,4 @@
-import { put, head } from "@vercel/blob";
+import { put, list } from "@vercel/blob";
 import seedProjects from "../../data/projects.json";
 import seedConfig from "../../data/admin-config.json";
 
@@ -37,7 +37,6 @@ export interface AdminConfig {
   };
 }
 
-// Resolved shape consumed by the portfolio UI
 export interface DisplayProject {
   id: string;
   title: string;
@@ -57,21 +56,19 @@ export interface DisplayProject {
 const PROJECTS_KEY = "projects.json";
 const CONFIG_KEY = "admin-config.json";
 
-async function blobExists(key: string): Promise<boolean> {
-  try {
-    await head(
-      `https://${process.env.BLOB_STORE_ID}.public.blob.vercel-storage.com/${key}`
-    );
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 async function readBlob<T>(key: string, fallback: T): Promise<T> {
   try {
-    const url = `https://${process.env.BLOB_STORE_ID}.public.blob.vercel-storage.com/${key}`;
-    const res = await fetch(url, { next: { revalidate: 0 } });
+    const token = process.env.BLOB_READ_WRITE_TOKEN;
+    if (!token) return fallback;
+
+    const { blobs } = await list({ prefix: key, token });
+    const blob = blobs.find((b) => b.pathname === key);
+    if (!blob) return fallback;
+
+    const res = await fetch(blob.url, {
+      headers: { Authorization: `Bearer ${token}` },
+      next: { revalidate: 0 },
+    });
     if (!res.ok) return fallback;
     return res.json() as Promise<T>;
   } catch {
@@ -81,9 +78,10 @@ async function readBlob<T>(key: string, fallback: T): Promise<T> {
 
 async function writeBlob<T>(key: string, data: T): Promise<void> {
   await put(key, JSON.stringify(data, null, 2), {
-    access: "public",
+    access: "private",
     contentType: "application/json",
     addRandomSuffix: false,
+    allowOverwrite: true,
   });
 }
 
@@ -131,4 +129,16 @@ export function getVisibleProjects(projects: ProjectData[]): DisplayProject[] {
     .filter((p) => p.visible)
     .sort((a, b) => a.sortOrder - b.sortOrder)
     .map(toDisplayProject);
+}
+
+// Returns true if the URL is a private Vercel Blob URL that needs proxying
+export function isBlobUrl(url: string): boolean {
+  return url.includes("blob.vercel-storage.com");
+}
+
+// Returns the correct src for displaying an image (proxied if blob, direct if public path)
+export function resolveImageSrc(url: string): string {
+  if (!url) return "";
+  if (isBlobUrl(url)) return `/api/blob-image?url=${encodeURIComponent(url)}`;
+  return url;
 }

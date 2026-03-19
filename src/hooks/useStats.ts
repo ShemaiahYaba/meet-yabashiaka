@@ -1,9 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 
+export interface ContributionDay {
+  date: string;
+  count: number;
+}
+
 export interface DynamicStats {
   soloProjects: number;
   collaborations: number;
   githubCommits: number;
+  contributionGraph: ContributionDay[];
 }
 
 async function fetchStats(): Promise<DynamicStats> {

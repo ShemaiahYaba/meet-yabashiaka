@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Lock } from "lucide-react";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -32,37 +33,45 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
       <div className="w-full max-w-sm">
-        <div className="rounded-md border border-border bg-[hsl(var(--card))] p-8">
-          <h1 className="font-code text-lg font-semibold text-foreground mb-1">
-            Admin Access
-          </h1>
-          <p className="text-xs text-[hsl(var(--muted-foreground))] mb-6">
-            Enter your admin key to continue.
-          </p>
+        <div className="text-center mb-8">
+          <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue-600/10 mb-4">
+            <Lock className="h-5 w-5 text-blue-600" />
+          </div>
+          <h1 className="text-xl font-semibold text-gray-900">Admin Access</h1>
+          <p className="text-sm text-gray-500 mt-1">Enter your admin key to continue</p>
+        </div>
 
+        <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
           <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="password"
-              value={key}
-              onChange={(e) => setKey(e.target.value)}
-              placeholder="••••••••••••••••••••••••••••••••"
-              className="w-full rounded-md border border-border bg-background px-3 py-2 font-code text-sm text-foreground placeholder:text-[hsl(var(--muted-foreground))] focus:outline-none focus:ring-1 focus:ring-primary"
-              required
-              autoFocus
-            />
+            <div>
+              <label className="block text-xs font-medium text-gray-600 mb-1.5">
+                Admin Key
+              </label>
+              <input
+                type="password"
+                value={key}
+                onChange={(e) => setKey(e.target.value)}
+                placeholder="Enter your 32-character key"
+                className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                required
+                autoFocus
+              />
+            </div>
 
             {error && (
-              <p className="text-xs text-destructive">{error}</p>
+              <p className="text-xs text-red-600 bg-red-50 border border-red-100 rounded-md px-3 py-2">
+                {error}
+              </p>
             )}
 
             <button
               type="submit"
               disabled={loading || !key}
-              className="w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
+              className="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-all hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? "Verifying..." : "Enter"}
+              {loading ? "Verifying..." : "Continue"}
             </button>
           </form>
         </div>
