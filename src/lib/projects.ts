@@ -1,4 +1,5 @@
 import { put, list } from "@vercel/blob";
+import { unstable_cache, revalidateTag } from "next/cache";
 import seedProjects from "../../data/projects.json";
 import seedConfig from "../../data/admin-config.json";
 
@@ -56,16 +57,24 @@ export interface DisplayProject {
 const PROJECTS_KEY = "projects.json";
 const CONFIG_KEY = "admin-config.json";
 
+// Module-level cache for blob URLs — saves list() round trip on warm instances
+const _blobUrlCache = new Map<string, string>();
+
 async function readBlob<T>(key: string, fallback: T): Promise<T> {
   try {
     const token = process.env.BLOB_READ_WRITE_TOKEN;
     if (!token) return fallback;
 
-    const { blobs } = await list({ prefix: key, token });
-    const blob = blobs.find((b) => b.pathname === key);
-    if (!blob) return fallback;
+    let url = _blobUrlCache.get(key);
+    if (!url) {
+      const { blobs } = await list({ prefix: key, token });
+      const blob = blobs.find((b) => b.pathname === key);
+      if (!blob) return fallback;
+      url = blob.url;
+      _blobUrlCache.set(key, url);
+    }
 
-    const res = await fetch(blob.url, {
+    const res = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
       next: { revalidate: 0 },
     });
@@ -85,20 +94,36 @@ async function writeBlob<T>(key: string, data: T): Promise<void> {
   });
 }
 
-export async function getProjects(): Promise<ProjectData[]> {
+// Raw reads (used internally and by admin routes that need fresh data)
+async function _readProjects(): Promise<ProjectData[]> {
   return readBlob<ProjectData[]>(PROJECTS_KEY, seedProjects as ProjectData[]);
 }
 
-export async function saveProjects(projects: ProjectData[]): Promise<void> {
-  await writeBlob(PROJECTS_KEY, projects);
+async function _readAdminConfig(): Promise<AdminConfig> {
+  return readBlob<AdminConfig>(CONFIG_KEY, seedConfig as AdminConfig);
 }
 
-export async function getAdminConfig(): Promise<AdminConfig> {
-  return readBlob<AdminConfig>(CONFIG_KEY, seedConfig as AdminConfig);
+// Cached reads — shared across instances via Next.js Data Cache
+// Invalidated immediately on any write via revalidateTag
+export const getProjects = unstable_cache(_readProjects, ["projects"], {
+  tags: ["projects"],
+  revalidate: 300, // 5 min fallback TTL
+});
+
+export const getAdminConfig = unstable_cache(
+  _readAdminConfig,
+  ["admin-config"],
+  { tags: ["admin-config"], revalidate: 3600 }
+);
+
+export async function saveProjects(projects: ProjectData[]): Promise<void> {
+  await writeBlob(PROJECTS_KEY, projects);
+  revalidateTag("projects");
 }
 
 export async function saveAdminConfig(config: AdminConfig): Promise<void> {
   await writeBlob(CONFIG_KEY, config);
+  revalidateTag("admin-config");
 }
 
 export function toDisplayProject(p: ProjectData): DisplayProject {

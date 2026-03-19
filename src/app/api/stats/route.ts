@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getProjects, getAdminConfig } from "@/lib/projects";
 import { fetchGithubStats } from "@/lib/github";
 
+export const revalidate = 3600;
+
 export async function GET() {
   const [projects, config, githubStats] = await Promise.all([
     getProjects(),

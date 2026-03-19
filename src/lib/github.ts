@@ -69,7 +69,7 @@ export async function fetchGithubStats(): Promise<GithubStats> {
     method: "POST",
     headers: authHeaders(),
     body: JSON.stringify({ query: STATS_QUERY }),
-    next: { revalidate: 0 },
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) throw new Error(`GitHub GraphQL error: ${res.status}`);

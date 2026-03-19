@@ -3,7 +3,6 @@
 import React from "react";
 import type { Skill, Tech } from "@/data/portfolio-data";
 import { IconRenderer } from "@/components/icon-renderer";
-import { icons } from "@/config/icons";
 
 interface SkillsSectionProps {
   id: string;
@@ -18,22 +17,12 @@ const SkillBar = ({ skill }: { skill: Skill }) => {
     .replace(/ \/ /g, "")
     .replace(/\./g, "")
     .replace(/ /g, "");
-  const hasIcon = Object.keys(icons).includes(iconKey);
-  const barColor = hasIcon ? icons[iconKey]?.color : "hsl(var(--primary))";
 
   return (
     <div className="group flex items-center gap-3">
       {/* Icon */}
       <div className="w-6 flex-shrink-0 flex justify-center">
-        {hasIcon ? (
-          <IconRenderer name={iconKey} className="h-4 w-4" enableGlow={false} />
-        ) : (
-          <div className="h-4 w-4 rounded-full border border-border bg-[hsl(var(--muted))] flex items-center justify-center">
-            <span className="text-[8px] font-bold text-primary">
-              {skill.name.charAt(0)}
-            </span>
-          </div>
-        )}
+        <IconRenderer name={iconKey} className="h-4 w-4" enableGlow={false} />
       </div>
       {/* Name */}
       <span className="w-24 flex-shrink-0 text-sm text-foreground truncate">
@@ -45,7 +34,7 @@ const SkillBar = ({ skill }: { skill: Skill }) => {
           className="h-full rounded-full transition-all duration-700 ease-out"
           style={{
             width: `${skill.proficiency}%`,
-            backgroundColor: barColor,
+            backgroundColor: "hsl(var(--gh-green))",
           }}
         />
       </div>
