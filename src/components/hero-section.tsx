@@ -1,37 +1,31 @@
 "use client";
 
 import { useState, useEffect } from "react";
-
-interface Stat {
-  value: number;
-  label: string;
-}
+import { useStats } from "@/hooks/useStats";
 
 interface HeroSectionProps {
   name: string;
   hebrewName: string;
   tagline: string;
-  stats: Stat[];
+  yearsOfCoding: number;
 }
 
 export default function HeroSection({
   name,
   hebrewName,
   tagline,
-  stats,
+  yearsOfCoding,
 }: HeroSectionProps) {
   const [visibleLines, setVisibleLines] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
+  const { data: dynamicStats } = useStats();
 
-  // Build terminal lines
-  const statsObj = stats.reduce(
-    (acc, stat) => {
-      const key = stat.label.toLowerCase().replace(/ /g, "_");
-      acc[key] = stat.value;
-      return acc;
-    },
-    {} as Record<string, number>,
-  );
+  const statsObj = {
+    years_of_coding: yearsOfCoding,
+    solo_projects_completed: dynamicStats?.soloProjects ?? "...",
+    collaborations: dynamicStats?.collaborations ?? "...",
+    github_commits: dynamicStats?.githubCommits ?? "...",
+  };
 
   const terminalLines = [
     { type: "command" as const, text: "$ whoami" },
@@ -50,7 +44,6 @@ export default function HeroSection({
     }
   }, [visibleLines, terminalLines.length]);
 
-  // Blinking cursor
   useEffect(() => {
     const timer = setInterval(() => setShowCursor((c) => !c), 530);
     return () => clearInterval(timer);
@@ -60,7 +53,6 @@ export default function HeroSection({
     <section className="py-10 md:py-16">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-4xl">
-          {/* Terminal Window */}
           <div className="overflow-hidden rounded-md border border-border bg-[hsl(var(--card))]">
             {/* Title Bar */}
             <div className="flex items-center gap-2 border-b border-border bg-[hsl(var(--muted))] px-4 py-2.5">
@@ -95,7 +87,6 @@ export default function HeroSection({
                   )}
                 </div>
               ))}
-              {/* Blinking cursor */}
               <span
                 className={`inline-block w-2 h-4 bg-[hsl(var(--gh-green))] align-middle ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity duration-100`}
               />

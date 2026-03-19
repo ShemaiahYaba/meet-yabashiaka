@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/react";
+import Providers from "@/app/providers";
 
 export const metadata: Metadata = {
   title: "Shemaiah's Digital Canvas",
@@ -36,9 +37,11 @@ export default function RootLayout({
           "min-h-screen bg-background font-body text-foreground antialiased",
         )}
       >
-        {children}
-        <Analytics />
-        <Toaster />
+        <Providers>
+          {children}
+          <Analytics />
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );

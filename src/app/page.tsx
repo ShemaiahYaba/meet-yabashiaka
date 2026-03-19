@@ -20,7 +20,7 @@ export default function Home() {
           name={portfolioData.fullName}
           hebrewName={portfolioData.hebrewName}
           tagline={portfolioData.tagline}
-          stats={portfolioData.stats}
+          yearsOfCoding={portfolioData.yearsOfCoding}
         />
 
         {/* GitHub Profile Layout: Sidebar + Main Content */}
@@ -33,7 +33,7 @@ export default function Home() {
                   bio={portfolioData.bio}
                   education={portfolioData.education}
                   certifications={portfolioData.certifications}
-                  stats={portfolioData.stats}
+                  yearsOfCoding={portfolioData.yearsOfCoding}
                   socialLinks={portfolioData.socialLinks}
                   resumeUrl={portfolioData.resumeUrl}
                 />
@@ -42,7 +42,7 @@ export default function Home() {
 
             {/* Main Content */}
             <div className="flex-1 min-w-0 space-y-10">
-              <WorkSection id="work" projects={portfolioData.workShowcase} />
+              <WorkSection id="work" />
               <SkillsSection
                 id="skills"
                 skills={portfolioData.skills}

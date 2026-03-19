@@ -1,0 +1,120 @@
+[
+  {
+    "id": "ResultFlow",
+    "fullName": "ShemaiahYaba/ResultFlow",
+    "visible": true,
+    "sortOrder": 0,
+    "isCollaboration": true,
+    "liveUrl": "https://result-flow.vercel.app/",
+    "customTitle": "ResultFlow",
+    "customDescription": "ResultFlow is a smart result management system that helps universities automate marksheet formatting, grading, and result generation.",
+    "customImage": "/images/result-flow/landing.png",
+    "customGallery": [
+      "/images/result-flow/landing.png",
+      "/images/result-flow/1.png",
+      "/images/result-flow/2.png",
+      "/images/result-flow/3.png",
+      "/images/result-flow/4.png",
+      "/images/result-flow/5.png"
+    ],
+    "tech": ["nextjs", "typescript", "supabase", "vercel"],
+    "progress": 100,
+    "github": {
+      "name": "ResultFlow",
+      "description": "",
+      "readme": "",
+      "stars": 0,
+      "topics": [],
+      "isPrivate": true,
+      "htmlUrl": "",
+      "lastSynced": null
+    }
+  },
+  {
+    "id": "EigenValue_Visualization",
+    "fullName": "ShemaiahYaba/EigenValue_Visualization",
+    "visible": true,
+    "sortOrder": 1,
+    "isCollaboration": false,
+    "liveUrl": "https://mlab-inky.vercel.app/",
+    "customTitle": "MatrixLAB",
+    "customDescription": "MatrixLAB is a modern educational web app that helps users intuitively explore the behavior of eigenvalues, eigenvectors, and principal components through interactive visualizations in 2D and 3D. Designed for students and educators in linear algebra, data science, and machine learning.",
+    "customImage": "/images/matrixlab/landing.png",
+    "customGallery": [
+      "/images/matrixlab/landing.png",
+      "/images/matrixlab/1.png",
+      "/images/matrixlab/2.png",
+      "/images/matrixlab/3.png"
+    ],
+    "tech": ["react", "tailwindcss", "typescript", "threejs", "flask", "vercel", "render"],
+    "progress": 100,
+    "github": {
+      "name": "EigenValue_Visualization",
+      "description": "",
+      "readme": "",
+      "stars": 0,
+      "topics": [],
+      "isPrivate": false,
+      "htmlUrl": "https://github.com/ShemaiahYaba/EigenValue_Visualization",
+      "lastSynced": null
+    }
+  },
+  {
+    "id": "clinic-app",
+    "fullName": "ShemaiahYaba/clinic-app",
+    "visible": true,
+    "sortOrder": 2,
+    "isCollaboration": true,
+    "liveUrl": null,
+    "customTitle": "MTU-RapidCare",
+    "customDescription": "MTU-RapidCare is a modern emergency alert and rapid response system for clinics and healthcare environments. Built with Expo, React Native, and Supabase, it enables real-time emergency reporting, device alerts, and seamless communication between staff and responders.",
+    "customImage": "/images/mtu-rapidcare/landing.png",
+    "customGallery": [
+      "/images/mtu-rapidcare/landing.png",
+      "/images/mtu-rapidcare/1.png",
+      "/images/mtu-rapidcare/2.png",
+      "/images/mtu-rapidcare/3.png"
+    ],
+    "tech": ["reactnative", "typescript", "supabase", "expo"],
+    "progress": 100,
+    "github": {
+      "name": "clinic-app",
+      "description": "",
+      "readme": "",
+      "stars": 0,
+      "topics": [],
+      "isPrivate": false,
+      "htmlUrl": "https://github.com/ShemaiahYaba/clinic-app",
+      "lastSynced": null
+    }
+  },
+  {
+    "id": "mtu-chapel-admin",
+    "fullName": "ShemaiahYaba/mtu-chapel-admin",
+    "visible": true,
+    "sortOrder": 3,
+    "isCollaboration": true,
+    "liveUrl": null,
+    "customTitle": "MTU-Chapel Admin",
+    "customDescription": "MTU-Chapel Admin is a feature-rich dashboard for managing Mountain Top University chapel activities. It streamlines service scheduling, attendance tracking, exeat management, absentee handling, and warning letter generation through an intuitive, efficient interface.",
+    "customImage": "/images/mtu-chapel-admin/landing.png",
+    "customGallery": [
+      "/images/mtu-chapel-admin/landing.png",
+      "/images/mtu-chapel-admin/1.png",
+      "/images/mtu-chapel-admin/2.png",
+      "/images/mtu-chapel-admin/3.png"
+    ],
+    "tech": ["nextjs", "shadcn", "typescript", "supabase"],
+    "progress": 60,
+    "github": {
+      "name": "mtu-chapel-admin",
+      "description": "",
+      "readme": "",
+      "stars": 0,
+      "topics": [],
+      "isPrivate": true,
+      "htmlUrl": "",
+      "lastSynced": null
+    }
+  }
+]

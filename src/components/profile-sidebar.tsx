@@ -17,6 +17,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { IconRenderer } from "./icon-renderer";
+import { useStats } from "@/hooks/useStats";
 
 interface Education {
   degree: string;
@@ -29,16 +30,11 @@ interface Certification {
   defaultImage: string;
 }
 
-interface Stat {
-  value: number;
-  label: string;
-}
-
 interface ProfileSidebarProps {
   bio: string;
   education: Education;
   certifications: Certification[];
-  stats: Stat[];
+  yearsOfCoding: number;
   socialLinks: SocialLink[];
   resumeUrl: string;
 }
@@ -47,10 +43,18 @@ export default function ProfileSidebar({
   bio,
   education,
   certifications,
-  stats,
+  yearsOfCoding,
   socialLinks,
   resumeUrl,
 }: ProfileSidebarProps) {
+  const { data: dynamicStats } = useStats();
+
+  const stats = [
+    { label: "Years of Coding", value: yearsOfCoding },
+    { label: "Solo Projects Completed", value: dynamicStats?.soloProjects ?? "—" },
+    { label: "Collaborations", value: dynamicStats?.collaborations ?? "—" },
+    { label: "GitHub Commits", value: dynamicStats?.githubCommits ?? "—" },
+  ];
   return (
     <aside className="space-y-6">
       {/* Bio */}
