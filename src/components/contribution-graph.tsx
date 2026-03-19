@@ -8,15 +8,25 @@ interface ContributionGraphProps {
   totalContributions: number;
 }
 
-const DAYS_OF_WEEK = ["", "Mon", "", "Wed", "", "Fri", ""];
-const WEEK_COUNT = 53;
+const CELL = 10;   // px
+const GAP = 3;     // px between cells
+const STEP = CELL + GAP; // 13px per cell slot
+const DAY_LABEL_W = 28; // px reserved for Mon/Wed/Fri labels
+const MONTH_ROW_H = 16; // px for month labels above the grid
 
+const DAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
+
+// GitHub light-mode green scale
 function getColor(count: number): string {
-  if (count === 0) return "hsl(215 14% 17%)"; // --muted
-  if (count <= 3) return "#0e4429";
-  if (count <= 6) return "#006d32";
-  if (count <= 9) return "#26a641";
-  return "#39d353";
+  if (count === 0) return "#ebedf0";
+  if (count <= 3)  return "#9be9a8";
+  if (count <= 6)  return "#40c463";
+  if (count <= 9)  return "#30a14e";
+  return "#216e39";
+}
+
+function toIso(d: Date): string {
+  return d.toISOString().slice(0, 10);
 }
 
 function formatDate(dateStr: string): string {
@@ -24,120 +34,135 @@ function formatDate(dateStr: string): string {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+const LEGEND = [0, 2, 5, 8, 12];
+
 export default function ContributionGraph({ data, totalContributions }: ContributionGraphProps) {
-  const grid = useMemo(() => {
-    // Build a map of date -> count
-    const map = new Map<string, number>();
-    for (const d of data) map.set(d.date, d.count);
-
-    // Figure out the starting Sunday for the grid
+  const { weeks, months } = useMemo(() => {
+    const map = new Map<string, number>(data.map((d) => [d.date, d.count]));
     const today = new Date();
-    const endSunday = new Date(today);
-    endSunday.setDate(today.getDate() + (6 - today.getDay())); // end of current week
 
-    const startDate = new Date(endSunday);
-    startDate.setDate(endSunday.getDate() - (WEEK_COUNT * 7 - 1));
+    // End on the last day of the current week (Saturday)
+    const end = new Date(today);
+    end.setDate(today.getDate() + (6 - today.getDay()));
 
-    // Build weeks array: each week is 7 days (Sun → Sat)
-    const weeks: { date: string; count: number }[][] = [];
-    let current = new Date(startDate);
+    // Go back 52 full weeks from end (52 weeks = 364 days) → start on a Sunday
+    const start = new Date(end);
+    start.setDate(end.getDate() - 52 * 7 + 1);
 
-    for (let w = 0; w < WEEK_COUNT; w++) {
-      const week: { date: string; count: number }[] = [];
+    const weeks: { date: string; count: number; future: boolean }[][] = [];
+    let cur = new Date(start);
+
+    while (cur <= end) {
+      const week: { date: string; count: number; future: boolean }[] = [];
       for (let d = 0; d < 7; d++) {
-        const iso = current.toISOString().slice(0, 10);
-        const isFuture = current > today;
-        week.push({ date: iso, count: isFuture ? -1 : (map.get(iso) ?? 0) });
-        current.setDate(current.getDate() + 1);
+        const iso = toIso(cur);
+        week.push({ date: iso, count: map.get(iso) ?? 0, future: cur > today });
+        cur.setDate(cur.getDate() + 1);
       }
       weeks.push(week);
     }
 
-    // Month labels: track which column each month starts at
+    // Month labels: emit whenever the 1st of a month appears in column 0 (Sunday) of a week
     const months: { label: string; col: number }[] = [];
-    for (let w = 0; w < weeks.length; w++) {
-      const firstDay = weeks[w][0];
-      if (firstDay && firstDay.count !== -1) {
-        const d = new Date(firstDay.date + "T00:00:00");
-        if (d.getDate() <= 7) {
-          const label = d.toLocaleDateString("en-US", { month: "short" });
-          if (months.length === 0 || months[months.length - 1].label !== label) {
-            months.push({ label, col: w });
-          }
+    weeks.forEach((week, wi) => {
+      const sun = new Date(week[0].date + "T00:00:00");
+      if (sun.getDate() <= 7) {
+        const label = sun.toLocaleDateString("en-US", { month: "short" });
+        if (!months.length || months[months.length - 1].label !== label) {
+          months.push({ label, col: wi });
         }
       }
-    }
+    });
 
     return { weeks, months };
   }, [data]);
 
+  const gridW = weeks.length * STEP - GAP;
+  const gridH = 7 * STEP - GAP;
+  const totalW = DAY_LABEL_W + gridW;
+  const totalH = MONTH_ROW_H + gridH;
+
   return (
-    <div className="rounded-md border border-border bg-[hsl(var(--card))] p-4">
+    <div className="rounded-md border border-border bg-card p-4">
+      {/* Header row */}
       <div className="flex items-center justify-between mb-3">
         <span className="text-sm font-semibold text-foreground">
           {totalContributions.toLocaleString()} contributions in the last year
         </span>
-        <div className="flex items-center gap-1.5 text-xs text-[hsl(var(--muted-foreground))]">
+        <div className="flex items-center gap-1 text-[11px] text-[hsl(var(--muted-foreground))]">
           <span>Less</span>
-          {[0, 3, 6, 9, 12].map((n) => (
+          {LEGEND.map((n) => (
             <div
               key={n}
-              className="h-3 w-3 rounded-sm"
-              style={{ backgroundColor: getColor(n) }}
+              style={{ width: CELL, height: CELL, backgroundColor: getColor(n), borderRadius: 2 }}
             />
           ))}
           <span>More</span>
         </div>
       </div>
 
-      <div className="overflow-x-auto">
-        <div style={{ display: "grid", gridTemplateColumns: `14px repeat(${WEEK_COUNT}, 1fr)`, gap: "3px", minWidth: "660px" }}>
-          {/* Month labels row */}
-          <div /> {/* spacer for day labels column */}
-          {grid.months.map((m, i) => {
-            const nextCol = grid.months[i + 1]?.col ?? WEEK_COUNT;
-            const span = nextCol - m.col;
-            return (
-              <div
-                key={`${m.label}-${m.col}`}
-                style={{ gridColumn: `span ${span}`, gridRow: 1 }}
-                className="text-[10px] text-[hsl(var(--muted-foreground))]"
-              >
-                {m.label}
-              </div>
-            );
-          })}
+      {/* Graph */}
+      <div style={{ overflowX: "auto" }}>
+        <svg
+          width={totalW}
+          height={totalH}
+          style={{ display: "block" }}
+          aria-label="Contribution graph"
+        >
+          {/* Month labels */}
+          {months.map((m, i) => (
+            <text
+              key={`m-${i}`}
+              x={DAY_LABEL_W + m.col * STEP}
+              y={MONTH_ROW_H - 4}
+              fontSize={10}
+              fill="hsl(210 9% 44%)"
+              fontFamily="inherit"
+            >
+              {m.label}
+            </text>
+          ))}
 
-          {/* Day labels + cells */}
-          {DAYS_OF_WEEK.map((label, dayIdx) => (
-            <>
-              <div
-                key={`label-${dayIdx}`}
-                className="text-[10px] text-[hsl(var(--muted-foreground))] flex items-center justify-end pr-1 leading-none"
-                style={{ height: "12px" }}
+          {/* Day-of-week labels */}
+          {DAY_LABELS.map((label, di) =>
+            label ? (
+              <text
+                key={`d-${di}`}
+                x={DAY_LABEL_W - 4}
+                y={MONTH_ROW_H + di * STEP + CELL - 1}
+                fontSize={10}
+                fill="hsl(210 9% 44%)"
+                textAnchor="end"
+                fontFamily="inherit"
               >
                 {label}
-              </div>
-              {grid.weeks.map((week, weekIdx) => {
-                const cell = week[dayIdx];
-                if (!cell) return <div key={`empty-${weekIdx}`} style={{ height: "12px" }} />;
-                const isFuture = cell.count === -1;
-                return (
-                  <div
-                    key={`${weekIdx}-${dayIdx}`}
-                    title={isFuture ? "" : `${cell.count} contribution${cell.count !== 1 ? "s" : ""} on ${formatDate(cell.date)}`}
-                    className="rounded-sm"
-                    style={{
-                      height: "12px",
-                      backgroundColor: isFuture ? "transparent" : getColor(cell.count),
-                      cursor: isFuture ? "default" : "default",
-                    }}
-                  />
-                );
-              })}
-            </>
-          ))}
-        </div>
+              </text>
+            ) : null
+          )}
+
+          {/* Cells */}
+          {weeks.map((week, wi) =>
+            week.map((day, di) => (
+              <rect
+                key={`${wi}-${di}`}
+                x={DAY_LABEL_W + wi * STEP}
+                y={MONTH_ROW_H + di * STEP}
+                width={CELL}
+                height={CELL}
+                rx={2}
+                ry={2}
+                fill={day.future ? "#ebedf0" : getColor(day.count)}
+                opacity={day.future ? 0.3 : 1}
+              >
+                {!day.future && (
+                  <title>
+                    {day.count} contribution{day.count !== 1 ? "s" : ""} on {formatDate(day.date)}
+                  </title>
+                )}
+              </rect>
+            ))
+          )}
+        </svg>
       </div>
     </div>
   );

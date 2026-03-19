@@ -3,35 +3,35 @@
 @tailwind utilities;
 
 @layer base {
-  /* GitHub Dark Theme — default */
+  /* GitHub Light Theme — default */
   :root {
-    --background: 215 28% 7%; /* #0d1117 */
-    --foreground: 210 17% 82%; /* #c9d1d9 */
-    --card: 215 21% 11%; /* #161b22 */
-    --card-foreground: 210 17% 82%; /* #c9d1d9 */
-    --popover: 215 21% 11%; /* #161b22 */
-    --popover-foreground: 210 17% 82%;
-    --primary: 212 92% 58%; /* #2f81f7 — GitHub blue */
+    --background: 0 0% 100%; /* #ffffff */
+    --foreground: 215 14% 14%; /* #1f2328 */
+    --card: 0 0% 100%; /* #ffffff */
+    --card-foreground: 215 14% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 14% 14%;
+    --primary: 212 92% 45%; /* #0969da — GitHub blue light */
     --primary-foreground: 0 0% 100%;
-    --secondary: 215 21% 11%; /* #161b22 */
-    --secondary-foreground: 210 17% 82%;
-    --muted: 215 14% 17%; /* #21262d */
-    --muted-foreground: 213 10% 57%; /* #8b949e */
-    --accent: 215 14% 17%;
-    --accent-foreground: 210 17% 82%;
+    --secondary: 210 17% 97%; /* #f6f8fa */
+    --secondary-foreground: 215 14% 14%;
+    --muted: 210 17% 97%; /* #f6f8fa */
+    --muted-foreground: 210 9% 44%; /* #636e7b */
+    --accent: 210 17% 97%;
+    --accent-foreground: 215 14% 14%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 14% 20%; /* #30363d */
-    --input: 215 14% 20%;
-    --ring: 212 92% 58%; /* GitHub blue */
-    --chart-1: 212 92% 58%;
-    --chart-2: 140 55% 49%; /* #3fb950 — GitHub green */
+    --border: 210 18% 87%; /* #d0d7de */
+    --input: 210 18% 87%;
+    --ring: 212 92% 45%;
+    --chart-1: 212 92% 45%;
+    --chart-2: 137 56% 36%; /* #2da44e — GitHub green light */
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --radius: 0.375rem;
-    --gh-green: 140 55% 49%; /* #3fb950 */
-    --gh-green-emphasis: 137 56% 36%; /* #238636 */
+    --gh-green: 137 56% 36%; /* #2da44e */
+    --gh-green-emphasis: 137 67% 25%; /* #1a7f37 */
   }
 }
 

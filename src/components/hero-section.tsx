@@ -53,15 +53,16 @@ export default function HeroSection({
     <section className="py-10 md:py-16">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-4xl">
-          <div className="overflow-hidden rounded-md border border-border bg-[hsl(var(--card))]">
+          {/* Terminal window — intentionally dark regardless of page theme */}
+          <div className="overflow-hidden rounded-md" style={{ background: "#0d1117", border: "1px solid #30363d" }}>
             {/* Title Bar */}
-            <div className="flex items-center gap-2 border-b border-border bg-[hsl(var(--muted))] px-4 py-2.5">
+            <div className="flex items-center gap-2 px-4 py-2.5" style={{ background: "#161b22", borderBottom: "1px solid #30363d" }}>
               <div className="flex items-center gap-1.5">
                 <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
                 <div className="h-3 w-3 rounded-full bg-[#febc2e]" />
                 <div className="h-3 w-3 rounded-full bg-[#28c840]" />
               </div>
-              <span className="ml-2 font-code text-xs text-[hsl(var(--muted-foreground))]">
+              <span className="ml-2 font-code text-xs" style={{ color: "#8b949e" }}>
                 shemaiah@dev ~{" "}
               </span>
             </div>
@@ -73,22 +74,21 @@ export default function HeroSection({
                   className={`${line.type === "blank" ? "h-4" : "mb-1"}`}
                 >
                   {line.type === "command" && (
-                    <span className="text-[hsl(var(--gh-green))]">
-                      {line.text}
-                    </span>
+                    <span style={{ color: "#3fb950" }}>{line.text}</span>
                   )}
                   {line.type === "output" && (
-                    <span className="text-foreground">{line.text}</span>
+                    <span style={{ color: "#c9d1d9" }}>{line.text}</span>
                   )}
                   {line.type === "json" && (
-                    <pre className="text-primary whitespace-pre">
+                    <pre className="whitespace-pre" style={{ color: "#2f81f7" }}>
                       {line.text}
                     </pre>
                   )}
                 </div>
               ))}
               <span
-                className={`inline-block w-2 h-4 bg-[hsl(var(--gh-green))] align-middle ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity duration-100`}
+                className={`inline-block w-2 h-4 align-middle ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity duration-100`}
+                style={{ backgroundColor: "#3fb950" }}
               />
             </div>
           </div>
