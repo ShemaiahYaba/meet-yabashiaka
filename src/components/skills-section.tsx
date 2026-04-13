@@ -11,7 +11,7 @@ interface SkillsSectionProps {
   techStack: Tech[];
 }
 
-const SkillBar = ({ skill }: { skill: Skill }) => {
+const SkillCard = ({ skill }: { skill: Skill }) => {
   const iconKey = skill.name
     .toLowerCase()
     .replace(/ \/ /g, "")
@@ -19,29 +19,15 @@ const SkillBar = ({ skill }: { skill: Skill }) => {
     .replace(/ /g, "");
 
   return (
-    <div className="group flex items-center gap-3">
-      {/* Icon */}
-      <div className="w-6 flex-shrink-0 flex justify-center">
-        <IconRenderer name={iconKey} className="h-4 w-4" enableGlow={false} />
-      </div>
-      {/* Name */}
-      <span className="w-24 flex-shrink-0 text-sm text-foreground truncate">
-        {skill.name}
-      </span>
-      {/* Bar */}
-      <div className="flex-1 h-2 rounded-full bg-[hsl(var(--muted))] overflow-hidden">
-        <div
-          className="h-full rounded-full transition-all duration-700 ease-out"
-          style={{
-            width: `${skill.proficiency}%`,
-            backgroundColor: "hsl(var(--gh-green))",
-          }}
+    <div className="group rounded-md border border-border/70 bg-[hsl(var(--card))] p-3 transition-colors hover:border-[hsl(var(--gh-green))]/50 hover:bg-[hsl(var(--muted))]/35">
+      <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-sm border border-border/70 bg-[hsl(var(--muted))]/40">
+        <IconRenderer
+          name={iconKey}
+          className="h-4 w-4 transition-transform duration-300 group-hover:scale-105"
+          enableGlow={false}
         />
       </div>
-      {/* Percentage */}
-      <span className="font-code text-xs text-[hsl(var(--muted-foreground))] w-10 text-right">
-        {skill.proficiency}%
-      </span>
+      <p className="text-xs font-medium text-foreground/95">{skill.name}</p>
     </div>
   );
 };
@@ -75,9 +61,9 @@ export default function SkillsSection({
         <h3 className="text-sm font-semibold text-foreground mb-4">
           Languages & Frameworks
         </h3>
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {skills.map((skill) => (
-            <SkillBar key={skill.name} skill={skill} />
+            <SkillCard key={skill.name} skill={skill} />
           ))}
         </div>
       </div>
@@ -88,9 +74,14 @@ export default function SkillsSection({
           <h3 className="text-sm font-semibold text-foreground mb-4">
             Concepts & Methodologies
           </h3>
-          <div className="space-y-3">
+          <div className="flex flex-wrap gap-2">
             {buzzwords.map((skill) => (
-              <SkillBar key={skill.name} skill={skill} />
+              <span
+                key={skill.name}
+                className="inline-flex items-center rounded-md border border-border/70 bg-[hsl(var(--muted))]/40 px-3 py-1.5 text-xs font-medium text-foreground/90"
+              >
+                {skill.name}
+              </span>
             ))}
           </div>
         </div>
