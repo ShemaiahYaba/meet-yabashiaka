@@ -4,10 +4,25 @@ import GithubIcon from "@/components/icons/github";
 import LinkedinIcon from "@/components/icons/linkedin";
 import TelegramIcon from "@/components/icons/telegram";
 import WhatsappIcon from "@/components/icons/whatsapp";
-import { 
+import {
   SiD3Dotjs,
   SiExpo,
+  SiGmail,
+  SiPhp,
+  SiExpress,
+  SiNestjs,
+  SiLaravel,
+  SiDjango,
+  SiFastapi,
+  SiMysql,
+  SiMongodb,
+  SiRedis,
+  SiKubernetes,
+  SiGit,
 } from 'react-icons/si';
+import { FaXTwitter } from 'react-icons/fa6';
+import DockerIcon from '@/components/icons/docker';
+import PostgresqlIcon from '@/components/icons/postgresql';
 import { TbBrandReactNative } from "react-icons/tb";
 import { 
   JavaScript, 
@@ -61,6 +76,8 @@ export const icons: Record<string, IconConfig> = {
   instagram: { component: InstagramIcon, color: "#E4405F" },
   telegram: { component: TelegramIcon, color: "#26A5E4" },
   whatsapp: { component: WhatsappIcon, color: "#25D366" },
+  x: { component: FaXTwitter, color: "#000000" },
+  gmail: { component: SiGmail, color: "#D14836" },
   
   // Programming Languages & Frameworks (Developer Icons - High Quality)
   html: { component: HTML5, color: "#DAA520" }, // Python orange
@@ -69,7 +86,20 @@ export const icons: Record<string, IconConfig> = {
   javascript: { component: JavaScript, color: "#F0DB4F" }, // JavaScript yellow
   typescript: { component: TypeScript, color: "#257acc" }, // TypeScript blue
   nodejs: { component: NodeJs, color: "#2EA255" }, // Node.js green
-  
+  php: { component: SiPhp, color: "#777BB4" },
+  expressjs: { component: SiExpress, color: "#000000" },
+  nestjs: { component: SiNestjs, color: "#E0234E" },
+  laravel: { component: SiLaravel, color: "#FF2D20" },
+  django: { component: SiDjango, color: "#092E20" },
+  fastapi: { component: SiFastapi, color: "#009688" },
+  postgresql: { component: PostgresqlIcon, color: "#4169E1" },
+  mysql: { component: SiMysql, color: "#4479A1" },
+  mongodb: { component: SiMongodb, color: "#47A248" },
+  redis: { component: SiRedis, color: "#DC382D" },
+  docker: { component: DockerIcon, color: "#2496ED" },
+  kubernetes: { component: SiKubernetes, color: "#326CE5" },
+  git: { component: SiGit, color: "#F05032" },
+
   // React Ecosystem (React Icons for consistency)
   react: { component: React, color: "#00B0FF" }, // React cyan
   nextjs: { component: NextJs, color: "#000000" }, // Next.js black
