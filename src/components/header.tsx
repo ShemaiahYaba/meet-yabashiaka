@@ -70,7 +70,7 @@ export default function Header({ resumeUrl, socialLinks }: HeaderProps) {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${isScrolled ? "border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80" : "border-border bg-background"}`}
+      className={`sticky top-0 z-50 w-full border-b transition-all duration-300 ${isScrolled ? "border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm" : "border-border/60 bg-background"}`}
     >
       <div className="container mx-auto flex h-14 items-center justify-between px-4 md:px-6">
         <Link
@@ -96,7 +96,7 @@ export default function Header({ resumeUrl, socialLinks }: HeaderProps) {
             asChild
             variant="outline"
             size="sm"
-            className="border-border text-foreground hover:bg-[hsl(var(--muted))] hover:border-[hsl(var(--muted-foreground))]"
+            className="border-border/60 shadow-sm text-foreground hover:bg-[hsl(var(--muted))] hover:border-[hsl(var(--muted-foreground))]"
           >
             <a href={resumeUrl} download>
               <Download className="mr-2 h-4 w-4" />

@@ -19,8 +19,8 @@ const SkillCard = ({ skill }: { skill: Skill }) => {
     .replace(/ /g, "");
 
   return (
-    <div className="group rounded-md border border-border/70 bg-[hsl(var(--card))] p-3 transition-colors hover:border-[hsl(var(--gh-green))]/50 hover:bg-[hsl(var(--muted))]/35">
-      <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-sm border border-border/70 bg-[hsl(var(--muted))]/40">
+    <div className="group rounded-md border border-border/50 bg-[hsl(var(--card))] p-3 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[hsl(var(--gh-green))]/50 hover:bg-[hsl(var(--muted))]/35">
+      <div className="mb-2 flex h-7 w-7 items-center justify-center rounded-sm bg-[hsl(var(--muted))]/40">
         <IconRenderer
           name={iconKey}
           className="h-4 w-4 transition-transform duration-300 group-hover:scale-105"
@@ -57,7 +57,7 @@ export default function SkillsSection({
       </div>
 
       {/* Languages & Frameworks */}
-      <div className="rounded-md border border-border bg-[hsl(var(--card))] p-5">
+      <div className="rounded-md border border-border/60 bg-[hsl(var(--card))] p-5 shadow-sm">
         <h3 className="text-sm font-semibold text-foreground mb-4">
           Languages & Frameworks
         </h3>
@@ -70,7 +70,7 @@ export default function SkillsSection({
 
       {/* Concepts & Methodologies */}
       {buzzwords.length > 0 && (
-        <div className="rounded-md border border-border bg-[hsl(var(--card))] p-5 mt-4">
+        <div className="rounded-md border border-border/60 bg-[hsl(var(--card))] p-5 mt-4 shadow-sm">
           <h3 className="text-sm font-semibold text-foreground mb-4">
             Concepts & Methodologies
           </h3>
@@ -78,7 +78,7 @@ export default function SkillsSection({
             {buzzwords.map((skill) => (
               <span
                 key={skill.name}
-                className="inline-flex items-center rounded-md border border-border/70 bg-[hsl(var(--muted))]/40 px-3 py-1.5 text-xs font-medium text-foreground/90"
+                className="inline-flex items-center rounded-md border border-border/40 bg-[hsl(var(--muted))]/60 px-3 py-1.5 text-xs font-medium text-foreground/90 shadow-sm"
               >
                 {skill.name}
               </span>

@@ -15,7 +15,7 @@ interface FooterProps {
 
 export default function Footer({ socialLinks }: FooterProps) {
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-border/60">
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 sm:flex-row md:px-6">
         <p className="text-xs text-[hsl(var(--muted-foreground))]">
           &copy; {new Date().getFullYear()} Shemaiah. All rights reserved.

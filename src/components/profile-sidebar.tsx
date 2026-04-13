@@ -51,7 +51,10 @@ export default function ProfileSidebar({
 
   const stats = [
     { label: "Years of Coding", value: yearsOfCoding },
-    { label: "Solo Projects Completed", value: dynamicStats?.soloProjects ?? "—" },
+    {
+      label: "Solo Projects Completed",
+      value: dynamicStats?.soloProjects ?? "—",
+    },
     { label: "Collaborations", value: dynamicStats?.collaborations ?? "—" },
     { label: "GitHub Commits", value: dynamicStats?.githubCommits ?? "—" },
   ];
@@ -79,7 +82,7 @@ export default function ProfileSidebar({
         ))}
       </div>
 
-      <div className="border-t border-border" />
+      <div className="border-t border-border/60" />
 
       {/* Education */}
       <div>
@@ -142,7 +145,7 @@ export default function ProfileSidebar({
         })}
       </div>
 
-      <div className="border-t border-border" />
+      <div className="border-t border-border/60" />
 
       {/* Social Links */}
       <div className="flex items-center gap-3 flex-wrap">
@@ -176,7 +179,7 @@ export default function ProfileSidebar({
         asChild
         variant="outline"
         size="sm"
-        className="w-full border-border text-foreground hover:bg-[hsl(var(--muted))] hover:border-[hsl(var(--muted-foreground))]"
+        className="w-full border-border/60 shadow-sm text-foreground hover:bg-[hsl(var(--muted))] hover:border-[hsl(var(--muted-foreground))]"
       >
         <a href={resumeUrl} download>
           <Download className="mr-2 h-4 w-4" />

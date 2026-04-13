@@ -53,16 +53,16 @@ export default function HeroSection({
     <section className="py-10 md:py-16">
       <div className="container mx-auto px-4 md:px-6">
         <div className="mx-auto max-w-4xl">
-          {/* Terminal window — intentionally dark regardless of page theme */}
-          <div className="overflow-hidden rounded-md" style={{ background: "#0d1117", border: "1px solid #30363d" }}>
+          {/* Terminal window — updated to light theme for better blending */}
+          <div className="overflow-hidden rounded-md border border-border/60 bg-[hsl(var(--card))] shadow-sm transition-all duration-300 hover:shadow-md">
             {/* Title Bar */}
-            <div className="flex items-center gap-2 px-4 py-2.5" style={{ background: "#161b22", borderBottom: "1px solid #30363d" }}>
+            <div className="flex items-center gap-2 px-4 py-2.5 bg-[hsl(var(--muted))]/50 border-b border-border/60">
               <div className="flex items-center gap-1.5">
-                <div className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-                <div className="h-3 w-3 rounded-full bg-[#febc2e]" />
-                <div className="h-3 w-3 rounded-full bg-[#28c840]" />
+                <div className="h-3 w-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
+                <div className="h-3 w-3 rounded-full bg-[#febc2e] border border-[#d89e24]" />
+                <div className="h-3 w-3 rounded-full bg-[#28c840] border border-[#22a735]" />
               </div>
-              <span className="ml-2 font-code text-xs" style={{ color: "#8b949e" }}>
+              <span className="ml-2 font-code text-xs text-[hsl(var(--muted-foreground))]">
                 shemaiah@dev ~{" "}
               </span>
             </div>
@@ -74,13 +74,15 @@ export default function HeroSection({
                   className={`${line.type === "blank" ? "h-4" : "mb-1"}`}
                 >
                   {line.type === "command" && (
-                    <span style={{ color: "#3fb950" }}>{line.text}</span>
+                    <span className="text-[hsl(var(--gh-green-emphasis))] font-medium">
+                      {line.text}
+                    </span>
                   )}
                   {line.type === "output" && (
-                    <span style={{ color: "#c9d1d9" }}>{line.text}</span>
+                    <span className="text-foreground">{line.text}</span>
                   )}
                   {line.type === "json" && (
-                    <pre className="whitespace-pre" style={{ color: "#2f81f7" }}>
+                    <pre className="whitespace-pre text-primary">
                       {line.text}
                     </pre>
                   )}
@@ -88,7 +90,7 @@ export default function HeroSection({
               ))}
               <span
                 className={`inline-block w-2 h-4 align-middle ${showCursor ? "opacity-100" : "opacity-0"} transition-opacity duration-100`}
-                style={{ backgroundColor: "#3fb950" }}
+                style={{ backgroundColor: "hsl(var(--foreground))" }}
               />
             </div>
           </div>

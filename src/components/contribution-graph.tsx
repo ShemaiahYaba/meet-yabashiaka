@@ -8,8 +8,8 @@ interface ContributionGraphProps {
   totalContributions: number;
 }
 
-const CELL = 10;   // px
-const GAP = 3;     // px between cells
+const CELL = 10; // px
+const GAP = 3; // px between cells
 const STEP = CELL + GAP; // 13px per cell slot
 const DAY_LABEL_W = 28; // px reserved for Mon/Wed/Fri labels
 const MONTH_ROW_H = 16; // px for month labels above the grid
@@ -19,9 +19,9 @@ const DAY_LABELS = ["", "Mon", "", "Wed", "", "Fri", ""];
 // GitHub light-mode green scale
 function getColor(count: number): string {
   if (count === 0) return "#ebedf0";
-  if (count <= 3)  return "#9be9a8";
-  if (count <= 6)  return "#40c463";
-  if (count <= 9)  return "#30a14e";
+  if (count <= 3) return "#9be9a8";
+  if (count <= 6) return "#40c463";
+  if (count <= 9) return "#30a14e";
   return "#216e39";
 }
 
@@ -31,12 +31,19 @@ function toIso(d: Date): string {
 
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr + "T00:00:00");
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
 }
 
 const LEGEND = [0, 2, 5, 8, 12];
 
-export default function ContributionGraph({ data, totalContributions }: ContributionGraphProps) {
+export default function ContributionGraph({
+  data,
+  totalContributions,
+}: ContributionGraphProps) {
   const { weeks, months } = useMemo(() => {
     const map = new Map<string, number>(data.map((d) => [d.date, d.count]));
     const today = new Date();
@@ -83,7 +90,7 @@ export default function ContributionGraph({ data, totalContributions }: Contribu
   const totalH = MONTH_ROW_H + gridH;
 
   return (
-    <div className="rounded-md border border-border bg-card p-4">
+    <div className="rounded-md border border-border/60 bg-card p-4 shadow-sm">
       {/* Header row */}
       <div className="flex items-center justify-between mb-3">
         <span className="text-sm font-semibold text-foreground">
@@ -94,7 +101,12 @@ export default function ContributionGraph({ data, totalContributions }: Contribu
           {LEGEND.map((n) => (
             <div
               key={n}
-              style={{ width: CELL, height: CELL, backgroundColor: getColor(n), borderRadius: 2 }}
+              style={{
+                width: CELL,
+                height: CELL,
+                backgroundColor: getColor(n),
+                borderRadius: 2,
+              }}
             />
           ))}
           <span>More</span>
@@ -137,7 +149,7 @@ export default function ContributionGraph({ data, totalContributions }: Contribu
               >
                 {label}
               </text>
-            ) : null
+            ) : null,
           )}
 
           {/* Cells */}
@@ -156,11 +168,12 @@ export default function ContributionGraph({ data, totalContributions }: Contribu
               >
                 {!day.future && (
                   <title>
-                    {day.count} contribution{day.count !== 1 ? "s" : ""} on {formatDate(day.date)}
+                    {day.count} contribution{day.count !== 1 ? "s" : ""} on{" "}
+                    {formatDate(day.date)}
                   </title>
                 )}
               </rect>
-            ))
+            )),
           )}
         </svg>
       </div>

@@ -38,7 +38,7 @@ interface WorkSectionProps {
 }
 
 const ProjectCardSkeleton = () => (
-  <div className="flex flex-col overflow-hidden rounded-md border border-border bg-[hsl(var(--card))] animate-pulse">
+  <div className="flex flex-col overflow-hidden rounded-md border border-border/60 bg-[hsl(var(--card))] shadow-sm animate-pulse">
     <div className="h-40 bg-[hsl(var(--muted))]" />
     <div className="p-4 space-y-3">
       <div className="h-3.5 w-32 rounded bg-[hsl(var(--muted))]" />
@@ -49,7 +49,10 @@ const ProjectCardSkeleton = () => (
       </div>
       <div className="flex gap-1.5">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="h-5 w-16 rounded-full bg-[hsl(var(--muted))]" />
+          <div
+            key={i}
+            className="h-5 w-16 rounded-full bg-[hsl(var(--muted))]"
+          />
         ))}
       </div>
     </div>
@@ -57,7 +60,7 @@ const ProjectCardSkeleton = () => (
 );
 
 const ProjectCard = ({ project }: { project: DisplayProject }) => (
-  <div className="group flex flex-col overflow-hidden rounded-md border border-border bg-[hsl(var(--card))] transition-colors hover:border-[hsl(var(--muted-foreground)_/_0.4)]">
+  <div className="group flex flex-col overflow-hidden rounded-md border border-border/60 bg-[hsl(var(--card))] shadow-sm transition-all duration-300 hover:shadow-md hover:border-[hsl(var(--muted-foreground)_/_0.3)]">
     {/* Image */}
     <div className="relative h-40 w-full overflow-hidden">
       {project.defaultImage ? (
@@ -178,7 +181,9 @@ const ProjectCard = ({ project }: { project: DisplayProject }) => (
                             alt={`${project.title} - Image ${index + 1}`}
                             fill
                             className="object-contain"
-                            unoptimized={imgSrc.includes("blob.vercel-storage.com")}
+                            unoptimized={imgSrc.includes(
+                              "blob.vercel-storage.com",
+                            )}
                           />
                         </div>
                       </CarouselItem>
